@@ -8,48 +8,37 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Deleting model 'BrandGroup'
-        db.delete_table(u'brand_group')
+        # Renaming model 'BrandGroup' into 'BrandOwner'
+        db.rename_table(u'brand_group', u'brand_owner')
 
-        # Adding model 'BrandOwner'
-        db.create_table(u'brand_owner', (
-            ('owner_cd', self.gf('django.db.models.fields.IntegerField')(primary_key=True, db_column=u'OWNER_CD')),
-            ('owner_nm', self.gf('django.db.models.fields.CharField')(max_length=255, db_column=u'OWNER_NM')),
-            ('owner_link', self.gf('django.db.models.fields.CharField')(max_length=255, db_column=u'OWNER_LINK')),
-            ('owner_wiki_en', self.gf('django.db.models.fields.CharField')(max_length=255, db_column=u'OWNER_WIKI_EN')),
-        ))
-        db.send_create_signal(u'brand', ['BrandOwner'])
+        # Renaming 'group_cd' field to 'owner_cd'
+        db.rename_column('brand_owner', 'GROUP_CD', 'OWNER_CD')
+
+        # Renaming 'group_nm' field to 'owner_nm'
+        db.rename_column('brand_owner', 'GROUP_NM', 'OWNER_NM')
+
+        # Renaming 'group_link' field to 'owner_link'
+        db.rename_column('brand_owner', 'GROUP_LINK', 'OWNER_LINK')
+
+        # Renaming 'group_wiki_en' field to 'owner_wiki_en'
+        db.rename_column('brand_owner', 'GROUP_WIKI_EN', 'OWNER_WIKI_EN')
 
         # Deleting field 'Brand.group_cd'
-        db.delete_column(u'brand', u'GROUP_CD')
+        db.rename_column('brand', 'GROUP_CD', 'OWNER_CD')
 
-        # Adding field 'Brand.owner_cd'
-        db.add_column(u'brand', 'owner_cd',
-                      self.gf('django.db.models.fields.IntegerField')(null=True, db_column=u'OWNER_CD', blank=True),
-                      keep_default=False)
-
+        # Adding the corresponding foreign key
+        db.alter_column('brand', 'OWNER_CD',
+            models.ForeignKey(
+                orm['brand.BrandOwner'],
+                blank=True,
+                null=True,
+            )
+        )
 
     def backwards(self, orm):
-        # Adding model 'BrandGroup'
-        db.create_table(u'brand_group', (
-            ('group_nm', self.gf('django.db.models.fields.CharField')(max_length=255, db_column=u'GROUP_NM')),
-            ('group_cd', self.gf('django.db.models.fields.IntegerField')(primary_key=True, db_column=u'GROUP_CD')),
-            ('group_wiki_en', self.gf('django.db.models.fields.CharField')(max_length=255, db_column=u'GROUP_WIKI_EN')),
-            ('group_link', self.gf('django.db.models.fields.CharField')(max_length=255, db_column=u'GROUP_LINK')),
-        ))
-        db.send_create_signal(u'brand', ['BrandGroup'])
 
-        # Deleting model 'BrandOwner'
-        db.delete_table(u'brand_owner')
-
-        # Adding field 'Brand.group_cd'
-        db.add_column(u'brand', 'group_cd',
-                      self.gf('django.db.models.fields.IntegerField')(null=True, db_column=u'GROUP_CD', blank=True),
-                      keep_default=False)
-
-        # Deleting field 'Brand.owner_cd'
-        db.delete_column(u'brand', u'OWNER_CD')
-
+        # No backward compatibility
+        raise RuntimeError("No backwards.")
 
     models = {
         u'brand.brand': {
