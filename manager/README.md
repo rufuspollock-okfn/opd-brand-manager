@@ -35,7 +35,7 @@ This is the source code corresponding to OKFN Open Product Data ( http://product
 
 - Add the Django settings in your virtalenv postactivate script :
   
-  > `echo 'export DJANGO_SETTINGS_MODULE="pod.manager.settings"' >> ~/pyve/pod/bin/postactivate`
+  > `echo 'export DJANGO_SETTINGS_MODULE="pod.manager.settings.dev"' >> ~/pyve/pod/bin/postactivate`
 
 ### 213 - RUN
 
@@ -56,4 +56,4 @@ This command should return :
 You can then navigate to the [hereabove mentionned] [5] address in your browser and will see the web application displayed.
 
 [5]: <http://127.0.0.1:8001> "Localhost Python Django server"
-
+t
