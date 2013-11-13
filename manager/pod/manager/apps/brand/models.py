@@ -1,5 +1,6 @@
 """
-Auto-generated models for brand, brand owner and brand type from file
+Auto-generated models from Philippe Plagnol architecture for brand, brand owner
+and brand type base on SQL file
 /database/brand_2013.11.13_01.sql
 
 For more information about auto-generating models, see
