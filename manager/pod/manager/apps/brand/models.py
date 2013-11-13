@@ -26,6 +26,9 @@ class Brand(models.Model):
     class Meta:
         db_table = 'brand'
 
+    def __unicode__(self):
+        return self.brand_nm
+
 
 class BrandOwner(models.Model):
     owner_cd = models.IntegerField(db_column='OWNER_CD', primary_key=True)
@@ -36,6 +39,9 @@ class BrandOwner(models.Model):
     class Meta:
         db_table = 'brand_owner'
 
+    def __unicode__(self):
+        return self.owner_nm
+
 
 class BrandType(models.Model):
     brand_type_cd = models.IntegerField(db_column='BRAND_TYPE_CD',
@@ -44,3 +50,6 @@ class BrandType(models.Model):
 
     class Meta:
         db_table = 'brand_type'
+
+    def __unicode__(self):
+        return self.brand_type_nm

@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Brand, BrandOwner, BrandType
 
-# Register your models here.
+admin.site.register(Brand)
+admin.site.register(BrandOwner)
+admin.site.register(BrandType)
