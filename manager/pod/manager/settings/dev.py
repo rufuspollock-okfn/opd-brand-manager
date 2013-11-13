@@ -6,9 +6,6 @@ Django settings in development environment.
 from __future__ import absolute_import
 from .common import *
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ic3r)q^l+pzz4*yxkn(e$!j-g!6lvb-n2=dae16+y$oer7)!1l'
-
 # Debug configuration
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
