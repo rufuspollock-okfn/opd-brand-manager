@@ -18,25 +18,14 @@ class Brand(models.Model):
     brand_type_cd = models.IntegerField(db_column='BRAND_TYPE_CD')
     brand_link = models.CharField(db_column='BRAND_LINK', max_length=255,
         blank=True)
+    flag_delete = models.BooleanField(db_column='FLAG_DELETE', default=False)
+    last_modified = models.DateTimeField(db_column='LAST_MODIFIED',
+        auto_now=True)
+    comments = models.CharField(db_column='COMMENTS', max_length=255,
+        blank=True, null=True)
 
     class Meta:
         db_table = 'brand'
-
-    def __unicode__(self):
-        return self.brand_nm
-
-
-class DeletedBrand(models.Model):
-    bsin = models.CharField(db_column='BSIN', primary_key=True, max_length=6)
-    brand_nm = models.CharField(db_column='BRAND_NM', max_length=255)
-    owner_cd = models.IntegerField(db_column='OWNER_CD', blank=True, null=True)
-    brand_type_cd = models.IntegerField(db_column='BRAND_TYPE_CD')
-    brand_link = models.CharField(db_column='BRAND_LINK', max_length=255,
-        blank=True)
-    reason = models.CharField(db_column='REASON', max_length=255)
-
-    class Meta:
-        db_table = 'deleted_brand'
 
     def __unicode__(self):
         return self.brand_nm
