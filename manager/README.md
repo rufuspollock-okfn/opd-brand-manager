@@ -35,7 +35,7 @@ This is the source code corresponding to OKFN Open Product Data ( http://product
 
 - Add the Django settings in your virtalenv postactivate script :
   
-  > `echo 'export DJANGO_SETTINGS_MODULE="pod.manager.settings.dev"' >> ~/pyve/pod/bin/postactivate`
+  > `echo 'export DJANGO_SETTINGS_MODULE="manager.settings.dev"' >> ~/pyve/pod/bin/postactivate`
 
 ### 213 - RUN
 

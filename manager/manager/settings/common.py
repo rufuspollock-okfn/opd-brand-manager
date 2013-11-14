@@ -1,5 +1,5 @@
 """
-Django settings for pod.manager project.
+Django settings for manager project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pod.manager.apps.brand',
+    'manager.apps.brand',
     'south'
 )
 
@@ -49,9 +49,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'pod.manager.urls'
+ROOT_URLCONF = 'manager.urls'
 
-WSGI_APPLICATION = 'pod.manager.wsgi.application'
+WSGI_APPLICATION = 'manager.wsgi.application'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
