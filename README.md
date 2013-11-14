@@ -1,6 +1,6 @@
 # 1 - DESCRIPTION
 
-This is the source code corresponding to [OKFN Open Product Data] [1] brand manager developped with Python Django framework version 1.6.
+This is the source code corresponding to [Open Knowledge Foundation Open Product Data] [1] brand manager developped with Python Django framework version 1.6.
 
 [1]: <http://product.okfn.org> "OKFN Open Product Data website"
 
