@@ -56,4 +56,4 @@ This command should return :
 You can then navigate to the [hereabove mentionned] [5] address in your browser and will see the web application displayed.
 
 [5]: <http://127.0.0.1:8001> "Localhost Python Django server"
-t
+
