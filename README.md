@@ -1,6 +1,8 @@
 # 1 - DESCRIPTION
 
-This is the source code corresponding to OKFN Open Product Data ( http://product-open-data.com/ ) brand manager developped with Python Django framework version 1.6.
+This is the source code corresponding to [OKFN Open Product Data] [1] brand manager developped with Python Django framework version 1.6.
+
+[1]: <http://product.okfn.org> "OKFN Open Product Data website"
 
 # 2 - INSTALLATION
 
@@ -10,19 +12,19 @@ This is the source code corresponding to OKFN Open Product Data ( http://product
 
 **Mandatory :**
 
-* [Python 2.7.5+] [1]
-* [Pip 1.3.1+] [2]
-* [VirtualEnv 1.9+] [3]
+* [Python 2.7.5+] [2]
+* [Pip 1.3.1+] [3]
+* [VirtualEnv 1.9+] [4]
 
-[1]: <http://www.python.org/getit/> "Python install documentation"
-[2]: <http://www.pip-installer.org/en/latest/installing.html> "Pip install documentation"
-[3]: <https://pypi.python.org/pypi/virtualenv> "VirtualEnv install documentation"
+[2]: <http://www.python.org/getit/> "Python install documentation"
+[3]: <http://www.pip-installer.org/en/latest/installing.html> "Pip install documentation"
+[4]: <https://pypi.python.org/pypi/virtualenv> "VirtualEnv install documentation"
 
 **Optionnal :**
 
-* [VirtualEnvWrapper 3.7+] [4]
+* [VirtualEnvWrapper 3.7+] [5]
 
-[4]: <http://virtualenvwrapper.readthedocs.org/en/latest/install.html#basic-installation> "VirtualEnvWrapper install documentation"
+[5]: <http://virtualenvwrapper.readthedocs.org/en/latest/install.html#basic-installation> "VirtualEnvWrapper install documentation"
 
 ### 212 - CONFIGURATION
 
@@ -53,7 +55,7 @@ This command should return :
         Starting development server at http://0.0.0.0:8001/
         Quit the server with CONTROL-C.
 
-You can then navigate to the [hereabove mentionned] [5] address in your browser and will see the web application displayed.
+You can then navigate to the [hereabove mentionned] [6] address in your browser and will see the web application displayed.
 
-[5]: <http://127.0.0.1:8001> "Localhost Python Django server"
+[6]: <http://127.0.0.1:8001> "Localhost Python Django server"
 
