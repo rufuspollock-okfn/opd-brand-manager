@@ -26,15 +26,6 @@ class Migration(SchemaMigration):
         # Deleting field 'Brand.group_cd'
         db.rename_column('brand', 'GROUP_CD', 'OWNER_CD')
 
-        # Adding the corresponding foreign key
-        db.alter_column('brand', 'OWNER_CD',
-            models.ForeignKey(
-                orm['brand.BrandOwner'],
-                blank=True,
-                null=True,
-            )
-        )
-
     def backwards(self, orm):
 
         # No backward compatibility
