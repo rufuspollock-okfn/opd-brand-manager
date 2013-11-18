@@ -65,5 +65,5 @@ This command should return something like :
 
 You can then navigate to the [hereabove mentionned] [6] address in your browser and will see the web application displayed.
 
-[6]: <http://127.0.0.1:8001> "Localhost Python Django server"
+[6]: <http://127.0.0.1:5000> "Localhost Python Django server"
 
