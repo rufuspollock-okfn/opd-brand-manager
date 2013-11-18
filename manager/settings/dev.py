@@ -18,11 +18,11 @@ SEND_BROKEN_LINK_EMAILS = False
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pod_brand',
         'USER': 'pod',
-        'PASSWORD': '$2a$12$FDdOzdKSDtmIorJXhjvNDO',
+        'PASSWORD': 'pod',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '5432',
     }
 }
