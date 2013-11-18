@@ -10,5 +10,18 @@ from django.conf import settings
 # Other imports
 from storages.backends.s3boto import S3BotoStorage
 
-StaticRootS3BotoStorage = lambda: S3BotoStorage(location='brand/static')
-MediaRootS3BotoStorage = lambda: S3BotoStorage(location='brand/media')
+
+class StaticRootS3BotoStorage(S3BotoStorage):
+    def __init__(self, *args, **kwargs):
+        kwargs['bucket'] = settings.AWS_STORAGE_BUCKET_NAME
+        kwargs['custom_domain'] = settings.S3_URL
+        kwargs['location'] = settings.STATIC_DIRECTORY
+        super(StaticRootS3BotoStorage, self).__init__(*args, **kwargs)
+
+
+class MediaRootS3BotoStorage(S3BotoStorage):
+    def __init__(self, *args, **kwargs):
+        kwargs['bucket'] = settings.AWS_STORAGE_BUCKET_NAME
+        kwargs['custom_domain'] = settings.S3_URL
+        kwargs['location'] = settings.MEDIA_DIRECTORY
+        super(MediaRootS3BotoStorage, self).__init__(*args, **kwargs)

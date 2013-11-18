@@ -64,17 +64,19 @@ STATICFILES_STORAGE = 'manager.libs.snippets.s3.StaticRootS3BotoStorage'
 DEFAULT_FILE_STORAGE = 'manager.libs.snippets.s3.MediaRootS3BotoStorage'
 
 AWS_QUERYSTRING_AUTH = False
+AWS_S3_CUSTOM_DOMAIN = "s3-eu-west-1.amazonaws.com/"
 AWS_S3_URL_PROTOCOL = 'https'
 AWS_S3_SECURE_URLS = True
 AWS_IS_GZIPPED = True
 
-S3_URL = '%s://s3.amazonaws.com/%s/' % (
-    AWS_S3_URL_PROTOCOL,
-    AWS_STORAGE_BUCKET_NAME
-)
+S3_URL = 's3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
 
-STATIC_DIRECTORY = 'brand/static/'
-STATIC_URL = S3_URL + STATIC_DIRECTORY
+STATIC_DIRECTORY = 'brand/static'
+AWS_STATIC_URL = "%s/%s" % (S3_URL, STATIC_DIRECTORY)
+STATIC_URL = "%s://%s/" % (AWS_S3_URL_PROTOCOL, AWS_STATIC_URL)
 
-MEDIA_DIRECTORY = 'brand/media/'
-MEDIA_URL = S3_URL + MEDIA_DIRECTORY
+MEDIA_DIRECTORY = 'brand/media'
+AWS_MEDIA_URL = "%s/%s" % (S3_URL, MEDIA_DIRECTORY)
+MEDIA_URL = "%s://%s/" % (AWS_S3_URL_PROTOCOL, AWS_MEDIA_URL)
+
+
