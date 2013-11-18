@@ -50,7 +50,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/#static-root
 # -and-static-url
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
