@@ -63,10 +63,18 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 STATICFILES_STORAGE = 'manager.libs.snippets.s3.StaticRootS3BotoStorage'
 DEFAULT_FILE_STORAGE = 'manager.libs.snippets.s3.MediaRootS3BotoStorage'
 
-S3_URL = 'http://%s.s3.amazonaws.com/brand' % AWS_STORAGE_BUCKET_NAME
+AWS_QUERYSTRING_AUTH = True
+AWS_S3_URL_PROTOCOL = 'https'
+AWS_S3_SECURE_URLS = True
+AWS_IS_GZIPPED = True
 
-STATIC_DIRECTORY = '/static/'
+S3_URL = '%s://s3.amazonaws.com/%s/' % (
+    AWS_S3_URL_PROTOCOL,
+    AWS_STORAGE_BUCKET_NAME
+)
+
+STATIC_DIRECTORY = 'brand/static/'
 STATIC_URL = S3_URL + STATIC_DIRECTORY
 
-MEDIA_DIRECTORY = '/media/'
+MEDIA_DIRECTORY = 'brand/media/'
 MEDIA_URL = S3_URL + MEDIA_DIRECTORY
