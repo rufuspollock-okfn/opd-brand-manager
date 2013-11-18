@@ -33,11 +33,21 @@ This is the source code corresponding to [Open Knowledge Foundation Open Product
 - Clone the current git repository.
 - Install the requirements with pip :
 
-  `pip install -r requirements.txt`
+  `pip install -r requirements/dev.txt`
 
 - Add the Django settings in your virtalenv postactivate script :
   
   `echo 'export DJANGO_SETTINGS_MODULE="manager.settings.dev"' >> ~/pyve/pod/bin/postactivate`
+
+- Prepare the test database with the Django dumped data :
+
+    # At this point the database configured in settings/dev.py is empty
+    python manage.py syncdb
+    # At this point the database contains the Django default tables
+    python manage.py sqlflush |psql -h localhost -U <user> <dbname>
+    # At this point the database contains the Django default tables emptyied
+    python manage.py loaddata sql/django_brand_data_2013.11.18_01.json
+    # At this point the database contains the Django testing data
 
 ### 213 - RUN
 
