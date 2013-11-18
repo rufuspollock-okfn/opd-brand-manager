@@ -41,13 +41,13 @@ This is the source code corresponding to [Open Knowledge Foundation Open Product
 
 - Prepare the test database with the Django dumped data :
 
-    # At this point the database configured in settings/dev.py is empty
-    python manage.py syncdb
-    # At this point the database contains the Django default tables
-    python manage.py sqlflush |psql -h localhost -U <user> <dbname>
-    # At this point the database contains the Django default tables emptyied
-    python manage.py loaddata sql/django_brand_data_2013.11.18_01.json
-    # At this point the database contains the Django testing data
+        # At this point the database configured in settings/dev.py is empty
+        python manage.py syncdb
+        # At this point the database contains the Django default tables
+        python manage.py sqlflush |psql -h localhost -U <user> <dbname>
+        # At this point the database contains the Django default tables emptyied
+        python manage.py loaddata sql/django_brand_data_2013.11.18_01.json
+        # At this point the database contains the Django testing data
 
 ### 213 - RUN
 
