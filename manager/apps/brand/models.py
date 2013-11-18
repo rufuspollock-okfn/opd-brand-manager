@@ -18,7 +18,7 @@ class Brand(models.Model):
         blank=True, null=True)
     brand_type_cd = models.ForeignKey('BrandType', db_column='BRAND_TYPE_CD')
     brand_link = models.CharField(db_column='BRAND_LINK', max_length=255,
-        blank=True)
+        blank=True, null=True)
     flag_delete = models.BooleanField(db_column='FLAG_DELETE', default=False)
     last_modified = models.DateTimeField(db_column='LAST_MODIFIED',
         auto_now=True)
