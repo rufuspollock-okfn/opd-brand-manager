@@ -50,7 +50,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # http://django-storages.readthedocs.org/en/latest/#installation
 
 INSTALLED_APPS += (
-    'storages'
+    'storages',
 )
 
 # Static asset configuration for S3
