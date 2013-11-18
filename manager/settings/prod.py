@@ -60,8 +60,8 @@ INSTALLED_APPS += (
 AWS_STORAGE_BUCKET_NAME = 'product.okfn.org'
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-STATICFILES_STORAGE = 'lib.snippets.s3.StaticRootS3BotoStorage'
-DEFAULT_FILE_STORAGE = 'lib.snippets.s3.MediaRootS3BotoStorage'
+STATICFILES_STORAGE = 'libs.snippets.s3.StaticRootS3BotoStorage'
+DEFAULT_FILE_STORAGE = 'libs.snippets.s3.MediaRootS3BotoStorage'
 
 S3_URL = 'http://%s.s3.amazonaws.com/brand' % AWS_STORAGE_BUCKET_NAME
 
