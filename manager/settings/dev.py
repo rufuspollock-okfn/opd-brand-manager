@@ -6,7 +6,9 @@ Django settings in development environment.
 from __future__ import absolute_import
 from .common import *
 
-# Debug configuration
+# Debug
+# https://docs.djangoproject.com/en/1.6/ref/settings/#std:setting-DEBUG
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 SEND_BROKEN_LINK_EMAILS = False

@@ -33,27 +33,25 @@ This is the source code corresponding to [Open Knowledge Foundation Open Product
 - Clone the current git repository.
 - Install the requirements with pip :
 
-  > `pip install -r requirements.txt`
+  `pip install -r requirements.txt`
 
 - Add the Django settings in your virtalenv postactivate script :
   
-  > `echo 'export DJANGO_SETTINGS_MODULE="manager.settings.dev"' >> ~/pyve/pod/bin/postactivate`
+  `echo 'export DJANGO_SETTINGS_MODULE="manager.settings.dev"' >> ~/pyve/pod/bin/postactivate`
 
 ### 213 - RUN
 
 To run the server, from your virtual environment, only one command is needed :
 
-> `python manage.py runserver 0.0.0.0:8001`
+`foreman start`
 
-This command should return :
+This command should return something like :
 
-        Validating models...
-        
-        0 errors found
-        November 13, 2013 - 20:17:27
-        Django version 1.6, using settings 'manager.settings'
-        Starting development server at http://0.0.0.0:8001/
-        Quit the server with CONTROL-C.
+    11:41:18 web.1  | started with pid 1839
+    11:41:19 web.1  | 2013-11-18 11:41:19 [1842] [INFO] Starting gunicorn 18.0
+    11:41:19 web.1  | 2013-11-18 11:41:19 [1842] [INFO] Listening at: http://0.0.0.0:5000 (1842)
+    11:41:19 web.1  | 2013-11-18 11:41:19 [1842] [INFO] Using worker: sync
+    11:41:19 web.1  | 2013-11-18 11:41:19 [1847] [INFO] Booting worker with pid: 1847
 
 You can then navigate to the [hereabove mentionned] [6] address in your browser and will see the web application displayed.
 
