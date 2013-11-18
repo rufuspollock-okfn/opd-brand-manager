@@ -63,7 +63,7 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 STATICFILES_STORAGE = 'manager.libs.snippets.s3.StaticRootS3BotoStorage'
 DEFAULT_FILE_STORAGE = 'manager.libs.snippets.s3.MediaRootS3BotoStorage'
 
-AWS_QUERYSTRING_AUTH = True
+AWS_QUERYSTRING_AUTH = False
 AWS_S3_URL_PROTOCOL = 'https'
 AWS_S3_SECURE_URLS = True
 AWS_IS_GZIPPED = True
