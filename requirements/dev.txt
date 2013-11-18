@@ -1,2 +1,4 @@
 # requirements/dev.txt
 -r common.txt
+MySQL-python==1.2.4
+
