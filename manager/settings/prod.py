@@ -46,9 +46,30 @@ DATABASES['default'] = dj_database_url.config()
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Static asset configuration
+# Django storage installation requirements
+# http://django-storages.readthedocs.org/en/latest/#installation
+
+INSTALLED_APPS += (
+    'storages'
+)
+
+# Static asset configuration for S3
 # https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/#static-root
 # -and-static-url
+
+AWS_STORAGE_BUCKET_NAME = 'product.okfn.org'
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+STATICFILES_STORAGE = 'lib.snippets.s3.StaticRootS3BotoStorage'
+DEFAULT_FILE_STORAGE = 'lib.snippets.s3.MediaRootS3BotoStorage'
+
+S3_URL = 'http://%s.s3.amazonaws.com/brand' % AWS_STORAGE_BUCKET_NAME
+
+STATIC_DIRECTORY = '/static/'
+STATIC_URL = S3_URL + STATIC_DIRECTORY
+
+MEDIA_DIRECTORY = '/media/'
+MEDIA_URL = S3_URL + MEDIA_DIRECTORY
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 STATIC_ROOT = 'staticfiles'
