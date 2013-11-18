@@ -70,11 +70,3 @@ STATIC_URL = S3_URL + STATIC_DIRECTORY
 
 MEDIA_DIRECTORY = '/media/'
 MEDIA_URL = S3_URL + MEDIA_DIRECTORY
-
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
