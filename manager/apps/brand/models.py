@@ -12,6 +12,10 @@ from django.db import models
 
 
 class Brand(models.Model):
+    """
+    Brand.
+    """
+
     bsin = models.CharField(db_column='BSIN', primary_key=True, max_length=6)
     brand_nm = models.CharField(db_column='BRAND_NM', max_length=255)
     owner_cd = models.ForeignKey(
@@ -33,6 +37,10 @@ class Brand(models.Model):
 
 
 class BrandOwner(models.Model):
+    """
+    Legal owner of the brand.
+    """
+
     owner_cd = models.IntegerField(db_column='OWNER_CD', primary_key=True)
     owner_nm = models.CharField(db_column='OWNER_NM', max_length=255)
     owner_link = models.CharField(db_column='OWNER_LINK', max_length=255)
@@ -46,6 +54,12 @@ class BrandOwner(models.Model):
 
 
 class BrandType(models.Model):
+    """
+    Brand owner by manufacturer and retailers are of 2 different types. The
+    repository contains groups of brands when the number of brand is too
+    important and that the number of product is small (Wine, Cheese,...).
+    """
+
     brand_type_cd = models.IntegerField(
         db_column='BRAND_TYPE_CD', primary_key=True)
     brand_type_nm = models.CharField(db_column='BRAND_TYPE_NM', max_length=255)
