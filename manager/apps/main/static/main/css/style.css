@@ -88,6 +88,43 @@
 	width: 940px;
 }
 
+.okfn-ribbon {
+	position: relative;
+	float: right;
+	width: 48px;
+	height: 40px;
+	margin-left: 5px;
+}
+
+.okfn-ribbon a {
+	background-image: url(http://assets.okfn.org/web/images/okf-ribbon.png);
+	background-repeat: no-repeat;
+	background-position: center -27px;
+	width: 48px;
+	height: 73px;
+	display: block;
+	cursor: pointer;
+	text-indent: -999px;
+	overflow: hidden;
+	position: absolute;
+	z-index: 1;
+}
+
+
+.okfn-top .search-form {
+	color: rgb(255, 255, 255);
+	display: none;
+	font-family: OpenSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	height: auto;
+	line-height: 20px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	width: auto;
+}
+
 .navbar .brand {
 	color: rgb(51, 51, 51);
 	cursor: auto;
