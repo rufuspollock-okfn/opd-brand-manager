@@ -92,7 +92,16 @@ MEDIA_URL = "%s://%s/" % (AWS_S3_URL_PROTOCOL, AWS_MEDIA_URL)
 
 CACHE_DIRECTORY = 'brand/cache'
 AWS_CACHE_URL = "%s/%s" % (S3_URL, CACHE_DIRECTORY)
-COMPRESS_URL = "%s://%s/" % (AWS_S3_URL_PROTOCOL, AWS_CACHE_URL)
+
+# Compress configuration
+# http://django-compressor.readthedocs.org/en/master/remote-storages/using-sta
+# ticfiles
+
+COMPRESS_URL = STATIC_URL
+COMPRESS_ROOT = STATIC_ROOT
+
+# Email configuration for sendgrid
+# http://sendgrid.com/docs/Integrate/Frameworks/django.html
 
 EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
 EMAIL_HOST = 'smtp.sendgrid.net'

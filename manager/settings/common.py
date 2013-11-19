@@ -77,8 +77,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
+# Compress configuration
 # http://django-compressor.readthedocs.org/en/master/remote-storages/using-sta
 # ticfiles
+
+COMPRESS_URL = STATIC_URL
 COMPRESS_ROOT = STATIC_ROOT
 
 # Template loaders
