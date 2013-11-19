@@ -89,3 +89,5 @@ TEMPLATE_LOADERS = (
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )
+
+SERVER_EMAIL = 'noreply@okfn.org'
