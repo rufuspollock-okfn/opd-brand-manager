@@ -78,6 +78,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
+# http://django-compressor.readthedocs.org/en/master/remote-storages/using-sta
+# ticfiles
+COMPRESS_ROOT = STATIC_ROOT
+
 # Template loaders
 # https://github.com/SyrusAkbary/pyjade#django
 
