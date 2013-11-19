@@ -72,7 +72,7 @@ AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 STATICFILES_STORAGE = 'manager.libs.snippets.s3.StaticRootS3BotoStorage'
 DEFAULT_FILE_STORAGE = 'manager.libs.snippets.s3.MediaRootS3BotoStorage'
-COMPRESS_STORAGE = 'manager.libs.snippets.s3.CacheRootS3BotoStorage'
+CACHEFILES_STORAGE = 'manager.libs.snippets.s3.CacheRootS3BotoStorage'
 
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_CUSTOM_DOMAIN = "s3-eu-west-1.amazonaws.com/"
