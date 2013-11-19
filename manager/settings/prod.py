@@ -7,6 +7,15 @@ from __future__ import absolute_import
 from .common import *
 import os
 
+# Administrators configuration
+ADMINS = (
+    ('Philippe Plagnol', 'philippe.plagnol@gmail.com'),
+    ('Nicolas Pieuchot', 'nls.pct@gmail.com'),
+)
+
+# Managers configuration
+MANAGERS = ADMINS
+
 # Debug
 # https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/#debug
 
