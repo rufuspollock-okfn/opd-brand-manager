@@ -5,6 +5,7 @@ Django settings in production environment.
 # Imports
 from __future__ import absolute_import
 from .common import *
+import os
 
 # Debug
 # https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/#debug
@@ -78,3 +79,9 @@ STATIC_URL = "%s://%s/" % (AWS_S3_URL_PROTOCOL, AWS_STATIC_URL)
 MEDIA_DIRECTORY = 'brand/media'
 AWS_MEDIA_URL = "%s/%s" % (S3_URL, MEDIA_DIRECTORY)
 MEDIA_URL = "%s://%s/" % (AWS_S3_URL_PROTOCOL, AWS_MEDIA_URL)
+
+EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
