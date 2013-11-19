@@ -67,3 +67,12 @@ You can then navigate to the [hereabove mentionned] [6] address in your browser 
 
 [6]: <http://127.0.0.1:5000> "Localhost Python Django server"
 
+### 214 - Contribute
+
+To contribute to the brand manager, you must fork the repository, do your modifications, push them and create a pull request on GitHub. More information about how to contribute in [GitHub documentation] [7]
+
+As much as possible, your changes must validate [PEP8] [8] coding standards. You can also check your contributions using [Pylint] [9].
+
+[7]: <https://help.github.com/articles/fork-a-repo> "GitHub documentation to contribute to a project"
+[8]: <http://www.python.org/dev/peps/pep-0008/> "PEP8 coding convention"
+[9]: <http://www.pylint.org/> "Pylint"
