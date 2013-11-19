@@ -77,12 +77,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
-# Compress configuration
-# http://django-compressor.readthedocs.org/en/master/remote-storages/using-sta
-# ticfiles
-
-COMPRESS_URL = STATIC_URL
-COMPRESS_ROOT = STATIC_ROOT
+#JS
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter',
+    'compressor.filters.template.TemplateFilter'
+]
 
 # Template loaders
 # https://github.com/SyrusAkbary/pyjade#django
@@ -97,6 +96,28 @@ TEMPLATE_LOADERS = (
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )
+
+# Compress configuration
+# http://django-compressor.readthedocs.org/en/master/remote-storages/using-sta
+# ticfiles
+
+COMPRESS_URL = STATIC_URL
+COMPRESS_ROOT = STATIC_ROOT
+
+COMPRESS_ENABLED = True
+COMPRESS_AUTO = True
+COMPRESS_VERSION = True
+COMPRESS_OFFLINE = False
+COMPRESS_PARSER = 'compressor.parser.LxmlParser'
+COMPRESS_OUTPUT_DIR = ''
+COMPRESS_STORAGE = 'compressor.storage.CompressorFileStorage'
+
+# CSS
+COMPRESS_CSS_HASHING_METHOD = 'hash'
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.cssmin.CSSMinFilter',
+    'compressor.filters.template.TemplateFilter'
+]
 
 # Server email
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
