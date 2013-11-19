@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'manager.apps.main',
     'manager.apps.brand',
+    'compressor',
     'south'
 )
 
@@ -91,4 +92,18 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )
 
+# Server email
+# https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = 'noreply@okfn.org'
+
+# Static files finders
+# https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-STATICFILES_F
+# INDERS
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+    # http://django-compressor.readthedocs.org/en/master/quickstart/
+    'compressor.finders.CompressorFinder',
+)
