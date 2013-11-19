@@ -9,4 +9,6 @@ gunicorn==18.0
 psycopg2==2.5.1
 static==0.4
 wsgiref==0.1.2
+pyjade==2.0.3
+six==1.4.1
 

@@ -18,6 +18,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ic3r)q^l+pzz4*yxkn(e$!j-g!6lvb-n2=dae16+y$oer7)!1l'
 
+# Project root
+PROJECT_ROOT = os.path.dirname(os.path.abspath(
+    os.path.join(__file__, os.path.pardir)))
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -35,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'manager.apps.main',
     'manager.apps.brand',
     'south'
 )
@@ -70,3 +75,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Template loaders
+# https://github.com/SyrusAkbary/pyjade#django
+
+TEMPLATE_LOADERS = (
+    ('pyjade.ext.django.Loader', (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )),
+)
+
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_ROOT, 'templates'),
+)
