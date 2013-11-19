@@ -7,6 +7,15 @@ from __future__ import absolute_import
 from .common import *
 import os
 
+# Administrators configuration
+ADMINS = (
+    ('Philippe Plagnol', 'philippe.plagnol@gmail.com'),
+    ('Nicolas Pieuchot', 'nls.pct@gmail.com'),
+)
+
+# Managers configuration
+MANAGERS = ADMINS
+
 # Debug
 # https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/#debug
 
@@ -63,6 +72,8 @@ AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 STATICFILES_STORAGE = 'manager.libs.snippets.s3.StaticRootS3BotoStorage'
 DEFAULT_FILE_STORAGE = 'manager.libs.snippets.s3.MediaRootS3BotoStorage'
+CACHEFILES_STORAGE = 'manager.libs.snippets.s3.CacheRootS3BotoStorage'
+COMPRESS_STORAGE = 'manager.libs.snippets.s3.CacheRootS3BotoStorage'
 
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_CUSTOM_DOMAIN = "s3-eu-west-1.amazonaws.com/"
@@ -79,6 +90,19 @@ STATIC_URL = "%s://%s/" % (AWS_S3_URL_PROTOCOL, AWS_STATIC_URL)
 MEDIA_DIRECTORY = 'brand/media'
 AWS_MEDIA_URL = "%s/%s" % (S3_URL, MEDIA_DIRECTORY)
 MEDIA_URL = "%s://%s/" % (AWS_S3_URL_PROTOCOL, AWS_MEDIA_URL)
+
+CACHE_DIRECTORY = 'brand/cache'
+AWS_CACHE_URL = "%s/%s" % (S3_URL, CACHE_DIRECTORY)
+
+# Compress configuration
+# http://django-compressor.readthedocs.org/en/master/remote-storages/using-sta
+# ticfiles
+
+COMPRESS_URL = STATIC_URL
+COMPRESS_ROOT = STATIC_ROOT
+
+# Email configuration for sendgrid
+# http://sendgrid.com/docs/Integrate/Frameworks/django.html
 
 EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
 EMAIL_HOST = 'smtp.sendgrid.net'

@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'manager.apps.main',
     'manager.apps.brand',
+    'compressor',
     'south'
 )
 
@@ -70,12 +71,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
+
+#JS
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter',
+    'compressor.filters.template.TemplateFilter'
+]
 
 # Template loaders
 # https://github.com/SyrusAkbary/pyjade#django
@@ -91,4 +97,40 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )
 
+# Compress configuration
+# http://django-compressor.readthedocs.org/en/master/remote-storages/using-sta
+# ticfiles
+
+COMPRESS_URL = STATIC_URL
+COMPRESS_ROOT = STATIC_ROOT
+
+COMPRESS_ENABLED = True
+COMPRESS_AUTO = True
+COMPRESS_VERSION = True
+COMPRESS_OFFLINE = False
+COMPRESS_PARSER = 'compressor.parser.LxmlParser'
+COMPRESS_OUTPUT_DIR = ''
+COMPRESS_STORAGE = 'compressor.storage.CompressorFileStorage'
+
+# CSS
+COMPRESS_CSS_HASHING_METHOD = 'hash'
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.cssmin.CSSMinFilter',
+    'compressor.filters.template.TemplateFilter'
+]
+
+# Server email
+# https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = 'noreply@okfn.org'
+
+# Static files finders
+# https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-STATICFILES_F
+# INDERS
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+    # http://django-compressor.readthedocs.org/en/master/quickstart/
+    'compressor.finders.CompressorFinder',
+)

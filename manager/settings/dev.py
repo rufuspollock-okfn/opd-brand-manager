@@ -26,3 +26,12 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# Compress configuration
+# http://django-compressor.readthedocs.org/en/master/remote-storages/using-sta
+# ticfiles
+
+COMPRESS_URL = STATIC_URL
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_OUTPUT_DIR = '/cache/'
+COMPRESS_STORAGE = 'compressor.storage.CompressorFileStorage'
