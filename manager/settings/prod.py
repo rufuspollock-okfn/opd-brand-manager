@@ -23,6 +23,10 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 SEND_BROKEN_LINK_EMAILS = True
 
+# Subsite configuration
+
+SUBSITE = 'brand/'
+
 # Allowed host
 # https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/#allowed-ho
 # sts

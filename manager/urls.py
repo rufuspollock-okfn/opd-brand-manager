@@ -1,15 +1,9 @@
 from django.conf.urls import patterns, include, url
-from django.contrib import admin
-
-admin.autodiscover()
+from django.conf import settings
 
 urlpatterns = patterns(
     '',
 
-    url(r'', include('manager.apps.main.urls')),
-
-    # Examples:
-    # url(r'^blog/', include('blog.urls')),
-
-    url(r'^admin/', include(admin.site.urls)),
+    # Subsite configuration http://domain.tld/dir/
+    url(settings.SUBSITE, include('manager.subsite_urls')),
 )

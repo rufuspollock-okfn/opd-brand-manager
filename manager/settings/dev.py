@@ -27,6 +27,12 @@ DATABASES = {
     }
 }
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.6/howto/static-files/
+
+if SUBSITE:
+    STATIC_URL = '/%s' % os.path.join(SUBSITE, *(STATIC_URL.split('/')))
+
 # Compress configuration
 # http://django-compressor.readthedocs.org/en/master/remote-storages/using-sta
 # ticfiles
