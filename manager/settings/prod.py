@@ -19,7 +19,7 @@ MANAGERS = ADMINS
 # Debug
 # https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/#debug
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 SEND_BROKEN_LINK_EMAILS = True
 
