@@ -27,7 +27,8 @@ SEND_BROKEN_LINK_EMAILS = True
 # https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/#allowed-ho
 # sts
 
-ALLOWED_HOSTS = ['brand-okfn.herokuapp.com', 'product.okfn.org']
+ALLOWED_HOSTS = [
+    'brand-okfn.herokuapp.com', 'product.okfn.org', 'brand.product.okfn.org']
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
