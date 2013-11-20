@@ -42,6 +42,7 @@ This is the source code corresponding to [Open Knowledge Foundation Open Product
   `echo 'export DJANGO_SETTINGS_MODULE="manager.settings.dev"' >> ~/pyve/pod/bin/postactivate`
 
 - Prepare the test database with the Django dumped data :
+
         # First, we need to create a new role 'pod' with PostgresSQL 
         createuser pod
         # Now, we need to create a new database 'pod_brand' with PostgresSQL
