@@ -114,3 +114,8 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+
+# Allow some friendly domains
+# https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-domain
+
+CSRF_COOKIE_DOMAIN = 'product.okfn.org'
