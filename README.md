@@ -15,16 +15,18 @@ This is the source code corresponding to [Open Knowledge Foundation Open Product
 * [Python 2.7.5+] [2]
 * [Pip 1.3.1+] [3]
 * [VirtualEnv 1.9+] [4]
+* [PostgresSQL] [5]
 
 [2]: <http://www.python.org/getit/> "Python install documentation"
 [3]: <http://www.pip-installer.org/en/latest/installing.html> "Pip install documentation"
 [4]: <https://pypi.python.org/pypi/virtualenv> "VirtualEnv install documentation"
+[5]: <http://www.postgresql.org/download/> "PostgresSQL Download Page"
 
 **Optionnal :**
 
-* [VirtualEnvWrapper 3.7+] [5]
+* [VirtualEnvWrapper 3.7+] [6]
 
-[5]: <http://virtualenvwrapper.readthedocs.org/en/latest/install.html#basic-installation> "VirtualEnvWrapper install documentation"
+[6]: <http://virtualenvwrapper.readthedocs.org/en/latest/install.html#basic-installation> "VirtualEnvWrapper install documentation"
 
 ### 212 - CONFIGURATION
 
@@ -40,13 +42,16 @@ This is the source code corresponding to [Open Knowledge Foundation Open Product
   `echo 'export DJANGO_SETTINGS_MODULE="manager.settings.dev"' >> ~/pyve/pod/bin/postactivate`
 
 - Prepare the test database with the Django dumped data :
-
+        # First, we need to create a new role 'pod' with PostgresSQL 
+        createuser pod
+        # Now, we need to create a new database 'pod_brand' with PostgresSQL
+        createdb pod_brand
         # At this point the database configured in settings/dev.py is empty
-        python manage.py syncdb
+        python manage.py syncdb --migrate
         # At this point the database contains the Django default tables
         python manage.py sqlflush |psql -h localhost -U <user> <dbname>
         # At this point the database contains the Django default tables emptyied
-        python manage.py loaddata sql/django_brand_data_2013.11.18_01.json
+        python manage.py loaddata sql/django_brand_data_2013_11_18_01.json
         # At this point the database contains the Django testing data
 
 ### 213 - RUN
