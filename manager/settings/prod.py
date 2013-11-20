@@ -118,4 +118,5 @@ EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
 # Allow some friendly domains
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-domain
 
+SESSION_COOKIE_DOMAIN = 'product.okfn.org'
 CSRF_COOKIE_DOMAIN = 'product.okfn.org'
