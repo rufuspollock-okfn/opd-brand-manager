@@ -1,4 +1,7 @@
 # requirements/dev.txt
 -r common.txt
-MySQL-python==1.2.4
+ipython==1.1.0
+ipdb==0.8
 
+# to use MySQL, you need
+MySQL-python==1.2.4
