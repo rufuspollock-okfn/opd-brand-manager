@@ -16,24 +16,39 @@ class Brand(models.Model):
     Brand.
     """
 
-    bsin = models.CharField(db_column='BSIN', primary_key=True, max_length=6)
-    brand_nm = models.CharField(db_column='BRAND_NM', max_length=255)
+    bsin = models.CharField(db_column='BSIN', primary_key=True, max_length=6,
+        verbose_name='BSIN')
+    brand_nm = models.CharField(db_column='BRAND_NM', max_length=255,
+        verbose_name='Brand name')
     owner_cd = models.ForeignKey(
-        'BrandOwner', db_column='OWNER_CD', blank=True, null=True)
-    brand_type_cd = models.ForeignKey('BrandType', db_column='BRAND_TYPE_CD')
-    brand_link = models.CharField(
-        db_column='BRAND_LINK', max_length=255, blank=True, null=True)
-    flag_delete = models.BooleanField(db_column='FLAG_DELETE', default=False)
+        'BrandOwner', db_column='OWNER_CD', blank=True, null=True,
+        verbose_name='Owner')
+    brand_type_cd = models.ForeignKey('BrandType', db_column='BRAND_TYPE_CD',
+        verbose_name='Brand type')
+    brand_link = models.URLField(
+        db_column='BRAND_LINK', max_length=255, blank=True, null=True,
+        verbose_name='Brand link')
+    flag_delete = models.BooleanField(db_column='FLAG_DELETE', default=False,
+        verbose_name='Deleted flag')
     last_modified = models.DateTimeField(
-        db_column='LAST_MODIFIED', auto_now=True)
+        db_column='LAST_MODIFIED', auto_now=True,
+        verbose_name='Last modified')
     comments = models.CharField(
-        db_column='COMMENTS', max_length=255, blank=True, null=True)
+        db_column='COMMENTS', max_length=255, blank=True, null=True,
+        verbose_name='Comments')
 
     class Meta:
         db_table = 'brand'
+        unique_together = ('brand_nm', 'owner_cd')
 
     def __unicode__(self):
         return self.brand_nm
+
+    def save(self, *args, **kwargs):
+        super(Brand, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        pass
 
 
 class BrandOwner(models.Model):
