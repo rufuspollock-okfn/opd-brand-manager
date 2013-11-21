@@ -9,6 +9,9 @@ https://docs.djangoproject.com/fr/1.6/howto/legacy-databases/
 
 from __future__ import unicode_literals
 from django.db import models
+from django.conf import settings
+from manager.libs.snippets.bsin import BSIN
+from django.core.validators import RegexValidator
 
 
 class Brand(models.Model):
@@ -17,7 +20,7 @@ class Brand(models.Model):
     """
 
     bsin = models.CharField(db_column='BSIN', primary_key=True, max_length=6,
-        verbose_name='BSIN')
+        verbose_name='BSIN', validators=[BSIN.BSINValidator])
     brand_nm = models.CharField(db_column='BRAND_NM', max_length=255,
         verbose_name='Brand name')
     owner_cd = models.ForeignKey(
@@ -37,6 +40,15 @@ class Brand(models.Model):
         db_column='COMMENTS', max_length=255, blank=True, null=True,
         verbose_name='Comments')
 
+    flag_delete.admin_order_field = 'flag_delete'
+    flag_delete.boolean = False
+    flag_delete.short_description = 'Brand is deleted?'
+
+    def brand_logo_admin(self):
+        return '<img width="32" height"32" src="https://s3.amazonaws.com/product.okfn.org/brand/media/brand/logo/%s.jpg"/>' % (
+            self.bsin)
+    brand_logo_admin.allow_tags = True
+
     class Meta:
         db_table = 'brand'
         unique_together = ('brand_nm', 'owner_cd')
@@ -44,10 +56,35 @@ class Brand(models.Model):
     def __unicode__(self):
         return self.brand_nm
 
+    @classmethod
+    def get_available_bsin(cls):
+        """
+        Generates an available BSIN.
+        """
+        bsin = BSIN.generate_BSIN()
+        while not cls.is_available_bsin(bsin):
+            bsin = BSIN.generate_BSIN()
+
+        return bsin
+
+    @classmethod
+    def is_available_bsin(cls, bsin):
+        """
+        Check if BSIN availability and return a boolean.
+        """
+        try:
+            self.objects.get(bsin=bsin)
+            return False
+        except Brand.DoesNotExist:
+            return True
+
     def save(self, *args, **kwargs):
         super(Brand, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
+        """
+        Never delete a brand.
+        """
         pass
 
 

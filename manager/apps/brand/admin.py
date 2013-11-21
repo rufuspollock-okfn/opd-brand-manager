@@ -1,21 +1,14 @@
 from django.contrib import admin
-from django.forms import ModelForm
+from django import forms
 from .models import Brand, BrandOwner, BrandType
 
 admin.site.register(BrandOwner)
 admin.site.register(BrandType)
 
 
-class BrandForm(ModelForm):
-
-    class Meta:
-        model = Brand
-        exclude = ['bsin', 'last_modified']
-
-
 class BrandAdmin(admin.ModelAdmin):
     actions = None
-    form = BrandForm
+    list_display = ('bsin', 'brand_nm', 'brand_logo_admin', 'flag_delete')
     fields = (
         'bsin', 'brand_nm', 'owner_cd', 'brand_type_cd', 'brand_link',
         ('flag_delete', 'comments'), 'last_modified')
