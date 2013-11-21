@@ -455,7 +455,6 @@ body {
 	padding-right: 0px;
 	padding-top: 15px;
 	text-shadow: none;
-	width: 1903px;
 }
 
 .okf-footer.container {
@@ -465,8 +464,8 @@ body {
 	font-size: 12px;
 	height: 20px;
 	line-height: 20px;
-	margin-left: 481.5px;
-	margin-right: 481.5px;
+	margin-right: auto;
+	margin-left: auto;
 	padding-bottom: 0px;
 	padding-left: 0px;
 	padding-right: 0px;
@@ -501,7 +500,6 @@ body {
 	padding-right: 0px;
 	padding-top: 0px;
 	text-shadow: none;
-	width: 1903px;
 	
 }
 
@@ -527,7 +525,6 @@ body {
 	padding-right: 0px;
 	padding-top: 10px;
 	text-shadow: none;
-	width: 1903px;
 }
 
 
