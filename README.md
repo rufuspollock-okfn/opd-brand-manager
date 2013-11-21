@@ -69,15 +69,15 @@ This command should return something like :
     11:41:19 web.1  | 2013-11-18 11:41:19 [1842] [INFO] Using worker: sync
     11:41:19 web.1  | 2013-11-18 11:41:19 [1847] [INFO] Booting worker with pid: 1847
 
-You can then navigate to the [hereabove mentionned] [6] address in your browser and will see the web application displayed.
+You can then navigate to the [hereabove mentionned] [7] address in your browser and will see the web application displayed.
 
 [7]: <http://127.0.0.1:5000> "Localhost Python Django server"
 
 ### 214 - Contribute
 
-To contribute to the brand manager, you must fork the repository, do your modifications, push them and create a pull request on GitHub. More information about how to contribute in [GitHub documentation] [7]
+To contribute to the brand manager, you must fork the repository, do your modifications, push them and create a pull request on GitHub. More information about how to contribute in [GitHub documentation] [8]
 
-As much as possible, your changes must validate [PEP8] [8] coding standards. You can also check your contributions using [Pylint] [9].
+As much as possible, your changes must validate [PEP8] [9] coding standards. You can also check your contributions using [Pylint] [10].
 
 [8]: <https://help.github.com/articles/fork-a-repo> "GitHub documentation to contribute to a project"
 [9]: <http://www.python.org/dev/peps/pep-0008/> "PEP8 coding convention"
