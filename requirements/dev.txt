@@ -2,6 +2,3 @@
 -r common.txt
 ipython==1.1.0
 ipdb==0.8
-
-# to use MySQL, you need
-MySQL-python==1.2.4
