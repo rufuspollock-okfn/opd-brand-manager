@@ -238,7 +238,6 @@ body {
 	padding-right: 0px;
 	padding-top: 0px;
 	position: relative;
-	width: 405px;
 	z-index: 999;
 }
 				
@@ -254,7 +253,6 @@ body {
 	list-style-position: outside;
 	list-style-type: none;
 	text-align: left;
-	width: 56px;
 	z-index: auto;
 }
 				
@@ -277,7 +275,6 @@ body {
 	text-align: left;
 	text-decoration: none;
 	text-shadow: none;
-	width: 38px;
 }
 				
 #menu-item-2 {
@@ -292,7 +289,6 @@ body {
 	list-style-position: outside;
 	list-style-type: none;
 	text-align: left;
-	width: 45px;
 	z-index: auto;
 }
 				
@@ -315,7 +311,6 @@ body {
 	text-align: left;
 	text-decoration: none;
 	text-shadow: none;
-	width: 27px;
 }
 
 #menu-item-3 {
@@ -331,7 +326,6 @@ body {
 	list-style-type: none;
 	position: relative;
 	text-align: left;
-	width: 96px;
 	z-index: 1000;
 }
 				
@@ -354,7 +348,6 @@ body {
 	text-align: left;
 	text-decoration: none;
 	text-shadow: none;
-	width: 78px;
 }
 				
 #menu-item-4 {
@@ -372,7 +365,6 @@ body {
 	list-style-position: outside;
 	list-style-type: none;
 	text-align: left;
-	width: 98px;
 	z-index: auto;
 }
 
@@ -398,7 +390,6 @@ body {
 	text-align: left;
 	text-decoration: none;
 	text-shadow: none;
-	width: 80px;
 }
 				
 				
@@ -414,7 +405,6 @@ body {
 	list-style-position: outside;
 	list-style-type: none;
 	text-align: left;
-	width: 110px;
 	z-index: auto;
 }
 
@@ -437,7 +427,7 @@ body {
 	text-align: left;
 	text-decoration: none;
 	text-shadow: none;
-	width: 92px;
+
 }
 
 .okf-footer {
