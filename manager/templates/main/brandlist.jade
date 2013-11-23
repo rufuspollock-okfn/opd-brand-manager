@@ -1,0 +1,34 @@
+- extends '__base.jade'
+
+block style
+  link(rel='stylesheet', href='{{ STATIC_URL }}brand/css/brand.css')
+
+block content
+
+  img(src='{{ STATIC_URL }}main/images/brand_logo_200.png',style='float:left;padding-right:20px;')
+  h1 Welcome to the <b>Brand Repository</b> of the <b>Open Knowledge Foundation</b> 
+  h2 Brands List
+  table
+    thead
+      tr: th Brand
+        th Logo
+        th Link
+    tbody
+      for brand in brands
+        tr
+          td.brand-table-td=brand.brand_nm
+          td.brand-table-td-logo
+            img(src="{{brand.brand_logo_src}}",height='50')
+          td.brand-table-td
+            if brand.brand_link
+              a(href="http://#{brand.brand_link}") #{brand.brand_link}
+            else
+              h4 No link
+              
+  div.pagination
+    span.step-links
+      if brands.has_previous
+        a(href="?page={{ brands.previous_page_number }}") Previous  
+      span.current Page {{ brands.number }} of {{ brands.paginator.num_pages }}.  
+      if brands.has_next
+        a(href="?page={{ brands.next_page_number }}") Next
