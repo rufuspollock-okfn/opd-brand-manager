@@ -43,4 +43,6 @@ class BrandView(View):
             brand = Brand.objects.get(bsin=os.path.split(path)[1])
         except ObjectDoesNotExist:
             return HttpResponseNotFound('<h1>Brand not found</h1>')
-        return render(request, self.template_name, {'brand': brand})
+        return render(request, self.template_name, {
+        'brand': brand,
+        'owner': brand.owner_cd})

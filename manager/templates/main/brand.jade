@@ -5,6 +5,23 @@ block style
 
 block content
 
-  img(src='{{ STATIC_URL }}main/images/brand_logo_200.png',style='float:left;padding-right:20px;')
-  h1 Welcome to the <b>Brand Repository</b> of the <b>Open Knowledge Foundation</b> 
-  h2 Brand {{brand.brand_nm}}
+  h1 {{brand.brand_nm}}
+  if owner
+    if owner.owner_link
+      h2 Owned by 
+        a(href="http://{{owner.owner_link}}") {{owner.owner_nm}}
+    else
+      h2 Owned by {{owner.owner_nm}}
+  else
+    h2 No owner
+    
+  table
+    tbody
+      td.brand-table-td-logo-full
+        img(src="{{brand.brand_logo_src}}",height='150',title="{{brand.brand_nm}}",alt="{{brand.brand_nm}}")
+      td.brand-table-td-infos
+        p <b>BSIN</b>: {{brand.bsin}}
+        p <b>Type</b>: {{brand.brand_type_cd.brand_type_nm}}
+        if brand.brand_link
+          p <b>Website</b>: 
+            a(href="http://{{brand.brand_link}}") {{brand.brand_link}}
