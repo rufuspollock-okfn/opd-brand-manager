@@ -4,7 +4,7 @@ from .models import Brand, BrandOwner, BrandType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-class BrandView(View):
+class BrandListView(View):
     r"""
     """
 
