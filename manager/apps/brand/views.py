@@ -38,10 +38,7 @@ class BrandView(View):
 
     def get(self, request):
         #remove trailing / for os.path.split
-        if request.path[-1:] == '/':
-            path = request.path[:-1]
-        else:
-            path = request.path
+        path = request.path[:-1] if request.path[-1:] == '/' else request.path
         try:
             brand = Brand.objects.get(bsin=os.path.split(path)[1])
         except ObjectDoesNotExist:
