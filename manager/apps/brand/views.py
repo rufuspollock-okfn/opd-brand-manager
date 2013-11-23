@@ -22,6 +22,6 @@ class BrandView(View):
             # If page is not an integer, deliver first page.
             brands = paginator.page(1)
         except EmptyPage:
-            # If page is out of range (e.g. 9999), deliver last page of results.
+            # If page is out of range, deliver last page of results.
             brands = paginator.page(paginator.num_pages)
         return render(request, self.template_name, {'brands': brands})
