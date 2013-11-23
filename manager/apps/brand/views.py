@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.views.generic import View
 from .models import Brand, BrandOwner, BrandType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseNotFound
+import os
 
 
 class BrandListView(View):
@@ -25,3 +28,22 @@ class BrandListView(View):
             # If page is out of range, deliver last page of results.
             brands = paginator.page(paginator.num_pages)
         return render(request, self.template_name, {'brands': brands})
+
+
+class BrandView(View):
+    r"""
+    """
+
+    template_name = 'main/brand.jade'
+
+    def get(self, request):
+        #remove trailing / for os.path.split
+        if request.path[-1:] == '/':
+            path = request.path[:-1]
+        else:
+            path = request.path
+        try:
+            brand = Brand.objects.get(bsin=os.path.split(path)[1])
+        except ObjectDoesNotExist:
+            return HttpResponseNotFound('<h1>Brand not found</h1>')
+        return render(request, self.template_name, {'brand': brand})
