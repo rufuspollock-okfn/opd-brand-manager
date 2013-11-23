@@ -7,9 +7,11 @@ html(lang="en")
   body
     - include '_okfn-header.jade'
   
-
-    #content
-      block content
+    #main-wrap
+      #sidebar
+        - include '_sidebar.jade'  
+      #content
+        block content
 
     block scripts
 

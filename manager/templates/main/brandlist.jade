@@ -5,9 +5,18 @@ block style
 
 block content
 
-  img(src='{{ STATIC_URL }}main/images/brand_logo_200.png',style='float:left;padding-right:20px;')
-  h1 Welcome to the <b>Brand Repository</b> of the <b>Open Knowledge Foundation</b> 
-  h2 Brands List
+  h1 Brands List
+
+  div.pagination
+    span.step-links
+      if brands.has_previous
+        a(href="?page={{ brands.previous_page_number }}") Previous  
+      span.current Page {{ brands.number }} of {{ brands.paginator.num_pages }}.  
+      if brands.has_next
+        a(href="?page={{ brands.next_page_number }}") Next
+
+  br
+
   table
     thead
       tr: th Brand
