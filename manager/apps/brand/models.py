@@ -44,9 +44,12 @@ class Brand(models.Model):
     flag_delete.boolean = False
     flag_delete.short_description = 'Brand is deleted?'
 
-    def brand_logo_admin(self):
-        return '<img width="32" height"32" src="https://s3.amazonaws.com/product.okfn.org/brand/media/brand/logo/%s.jpg"/>' % (
+    def brand_logo_src(self):
+        return 'https://s3.amazonaws.com/product.okfn.org/brand/media/brand/logo/%s.jpg' % (
             self.bsin)
+    def brand_logo_admin(self):
+        return '<img width="32" height"32" src="%s"/>' % (
+            self.brand_logo_src())
     brand_logo_admin.allow_tags = True
 
     class Meta:
