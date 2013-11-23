@@ -15,7 +15,7 @@ class BrandListView(View):
     allBrands = Brand.objects.all()
 
     def get(self, request):
-        brand_list = Brand.objects.all()
+        brand_list = Brand.objects.filter(flag_delete=False)
         paginator = Paginator(brand_list, 25) # Show 100 brands per page
 
         page = request.GET.get('page')
