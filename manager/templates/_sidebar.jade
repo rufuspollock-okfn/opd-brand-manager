@@ -2,8 +2,8 @@ img(src='{{ STATIC_URL }}main/images/brand_logo_200.png',style='padding:0px;')
 
 ul
   li
-    a(href="/")
+    a(href="{% url 'home' %}")
       | Home
   li
-    a(href="/brand/")
+    a(href="{% url 'brandlist' %}")
       | Brand List
