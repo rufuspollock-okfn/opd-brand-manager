@@ -64,6 +64,7 @@ class Brand(models.Model):
     class Meta:
         db_table = 'brand'
         unique_together = ('brand_nm', 'owner_cd')
+        ordering = ['brand_nm']
 
     def __unicode__(self):
         return self.brand_nm
@@ -115,6 +116,7 @@ class BrandOwner(models.Model):
 
     def __unicode__(self):
         return self.owner_nm
+        ordering = ['owner_nm']
 
 
 class BrandType(models.Model):
