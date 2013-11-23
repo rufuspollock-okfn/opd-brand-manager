@@ -6,5 +6,5 @@ urlpatterns = patterns(
     '',
     url(r'^$', BrandListView.as_view(), name='brandlist'),
     #regular expression for a BSIN
-    url(r'^[1-9A-NP-Z]{6,6}', BrandView.as_view(), name='brand'),
+    url(r'^[1-9A-NP-Z]{6}', BrandView.as_view(), name='brand'),
 )
