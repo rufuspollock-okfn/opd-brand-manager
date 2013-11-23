@@ -25,7 +25,8 @@ block content
     tbody
       for brand in brands
         tr
-          td.brand-table-td=brand.brand_nm
+          td.brand-table-td
+           a(href='{% url "brandlist" %}{{brand.bsin}}') {{brand.brand_nm}}
           td.brand-table-td-logo
             img(src="{{brand.brand_logo_src}}",height='50')
           td.brand-table-td

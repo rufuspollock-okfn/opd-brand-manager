@@ -1,7 +1,15 @@
 .brand-table-td {
     width: 30%;
 }
+
 .brand-table-td-logo {
     width: 20%;
     text-align:center;
+}
+
+.brand-table-td-logo-full {
+    width: 150px;
+}
+.brand-table-td-infos {
+    width: 450px;
 }
