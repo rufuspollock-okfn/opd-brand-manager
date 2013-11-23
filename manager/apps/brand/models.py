@@ -9,10 +9,14 @@ https://docs.djangoproject.com/fr/1.6/howto/legacy-databases/
 
 from __future__ import unicode_literals
 from django.db import models
-from django.conf import settings
 from manager.libs.snippets.bsin import BSIN
 from django.core.validators import RegexValidator
+from django.templatetags.static import static
+import os
 
+
+def get_brand_logo_path(instance, filename):
+    return os.path.join('brand', 'logo', '%s.jpg' % instance.bsin)
 
 class Brand(models.Model):
     """
@@ -31,6 +35,9 @@ class Brand(models.Model):
     brand_link = models.URLField(
         db_column='BRAND_LINK', max_length=255, blank=True, null=True,
         verbose_name='Brand link')
+    brand_logo = models.ImageField(
+        db_column='BRAND_LOGO', verbose_name='Brand logo',
+        upload_to=get_brand_logo_path, blank=True, null=True)
     flag_delete = models.BooleanField(db_column='FLAG_DELETE', default=False,
         verbose_name='Deleted flag')
     last_modified = models.DateTimeField(
@@ -44,12 +51,14 @@ class Brand(models.Model):
     flag_delete.boolean = False
     flag_delete.short_description = 'Brand is deleted?'
 
-    def brand_logo_src(self):
-        return 'https://s3.amazonaws.com/product.okfn.org/brand/media/brand/logo/%s.jpg' % (
-            self.bsin)
     def brand_logo_admin(self):
-        return '<img width="32" height"32" src="%s"/>' % (
-            self.brand_logo_src())
+        if hasattr(self.brand_logo, 'url'):
+            return '<img width="32" height"32" src="%s"/>' % (
+                self.brand_logo.url)
+        else:
+            return '<img width="32" height"32" src="%s" />' % (
+                static('brand/images/no_picture.gif'))
+
     brand_logo_admin.allow_tags = True
 
     class Meta:
