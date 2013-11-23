@@ -52,7 +52,7 @@ class Brand(models.Model):
     flag_delete.short_description = 'Brand is deleted?'
 
     def brand_logo_admin(self):
-        if hasattr(self.brand_logo, 'url'):
+        if self.brand_logo:
             return '<img width="32" height"32" src="%s"/>' % (
                 self.brand_logo.url)
         else:
