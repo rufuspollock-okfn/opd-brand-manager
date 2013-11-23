@@ -36,11 +36,9 @@ class BrandView(View):
 
     template_name = 'main/brand.jade'
 
-    def get(self, request):
-        #remove trailing / for os.path.split
-        path = request.path[:-1] if request.path[-1:] == '/' else request.path
+    def get(self, request, bsin):
         try:
-            brand = Brand.objects.get(bsin=os.path.split(path)[1])
+            brand = Brand.objects.get(bsin=bsin)
         except ObjectDoesNotExist:
             return HttpResponseNotFound('<h1>Brand not found</h1>')
         return render(request, self.template_name, {
