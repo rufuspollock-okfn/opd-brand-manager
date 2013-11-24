@@ -14,8 +14,14 @@ class BrandListView(View):
     allBrands = Brand.objects.all()
 
     def get(self, request):
-        brand_list = Brand.objects.filter(flag_delete=False)
-        paginator = Paginator(brand_list, 25) # Show 100 brands per page
+        search = request.GET.get('search', '')
+        if search != '':
+            brand_list = Brand.objects.filter(brand_nm__icontains=search)
+            brand_list = filter(lambda brand: brand.flag_delete == False,
+            brand_list)
+        else:
+            brand_list = Brand.objects.filter(flag_delete=False)
+        paginator = Paginator(brand_list, 25) # Show 25 brands per page
 
         page = request.GET.get('page')
         try:
@@ -26,7 +32,9 @@ class BrandListView(View):
         except EmptyPage:
             # If page is out of range, deliver last page of results.
             brands = paginator.page(paginator.num_pages)
-        return render(request, self.template_name, {'brands': brands})
+        return render(request, self.template_name, {
+        'brands': brands,
+        'search': search})
 
 
 class BrandView(View):
