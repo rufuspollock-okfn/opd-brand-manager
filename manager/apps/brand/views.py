@@ -4,7 +4,6 @@ from .models import Brand, BrandOwner, BrandType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
-import os
 
 
 class BrandListView(View):
