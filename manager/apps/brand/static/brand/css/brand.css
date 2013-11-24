@@ -8,8 +8,9 @@
 }
 
 .brand-table-td-logo-full {
-    width: 150px;
+    width: 40%;
+    text-align:center;
 }
 .brand-table-td-infos {
-    width: 450px;
+    width: 60%;
 }
