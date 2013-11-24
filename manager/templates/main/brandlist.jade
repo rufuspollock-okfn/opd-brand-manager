@@ -7,6 +7,14 @@ block content
 
   h1 Brands List
 
+  div
+    form(method="get")
+      input(type="text", name="search", value="{{search}}")
+      input(type="submit", value="Search")
+      
+  if search
+    h2 Search results for {{search}}
+    
   div.pagination
     span.step-links
       if brands.has_previous

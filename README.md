@@ -52,7 +52,7 @@ This is the source code corresponding to [Open Knowledge Foundation Open Product
         # At this point the database contains the Django default tables
         python manage.py sqlflush |psql -h localhost -U <user> <dbname>
         # At this point the database contains the Django default tables emptyied
-        python manage.py loaddata sql/django_brand_data_2013_11_18_01.json
+        python manage.py loaddata sql/django_brand_data_2013_11_24_01.json
         # At this point the database contains the Django testing data
 
 ### 213 - RUN
@@ -73,7 +73,16 @@ You can then navigate to the [hereabove mentionned] [7] address in your browser 
 
 [7]: <http://127.0.0.1:5000> "Localhost Python Django server"
 
-### 214 - Contribute
+### 214 - MIGRATE
+
+To migrate the database, only one command is needed :
+`python manage.py migrate brand`
+
+If you encounter some problems or your database is corrupted :
+`dropdb pod_brand`
+Then re-prepare the test database (except the role 'pod', which stays there)
+
+### 215 - Contribute
 
 To contribute to the brand manager, you must fork the repository, do your modifications, push them and create a pull request on GitHub. More information about how to contribute in [GitHub documentation] [8]
 
