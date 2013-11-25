@@ -1,9 +1,24 @@
-img(src='{{ STATIC_URL }}main/images/brand_logo_200.png',style='padding:0px;')
+img(src='{{ STATIC_URL }}main/images/brand_logo_200.png',style='padding:0px;margin-bottom:10px;')
 
-ul
-  li
-    a(href="{% url 'home' %}")
-      | Home
-  li
-    a(href="{% url 'brandlist' %}")
-      | Brand List
+#cssmenu
+  ul
+    li
+      a(href="{% url 'home' %}")
+        span
+          | Home
+    li
+      a(href="{% url 'brandlist' %}")
+        span
+          | Brand List
+    li
+      a(href="{% url 'home' %}")
+        span
+          | Owner List
+    li
+      a(href="{% url 'home' %}")
+        span
+          | Add a brand
+    li
+      a(href="{% url 'home' %}")
+        span
+          | Download & API
