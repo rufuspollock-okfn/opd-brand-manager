@@ -28,19 +28,22 @@ block content
   table
     thead
       tr: th Brand
-        th Logo
-        th Link
+          th BSIN
+          th Logo
+          th Link
     tbody
       for brand in brands
         tr
-          td.brand-table-td
-           a(href='{% url "brandlist" %}{{ brand.bsin }}') {{ brand.brand_nm }}
+          td.brand-table-td-name
+            a(href='{% url "brandlist" %}{{ brand.bsin }}') {{ brand.brand_nm }}
+          td.brand-table-td-bsin
+            a(href='{% url "brandlist" %}{{ brand.bsin }}') {{ brand.bsin }}
           td.brand-table-td-logo
             if brand.brand_logo
               img(src="{{ MEDIA_URL }}{{ brand.brand_logo.name }}", title="{{ brand.brand_nm }}", alt="{{brand.brand_nm}}", height='50')
             else
               img(src="{{ STATIC_URL }}brand/images/no_picture.gif", title="{{ brand.brand_nm }}", alt="{{brand.brand_nm}}", height='50')
-          td.brand-table-td
+          td.brand-table-td-link
             if brand.brand_link
               a(href="{{ brand.brand_link }}") {{ brand.brand_link }}
             else

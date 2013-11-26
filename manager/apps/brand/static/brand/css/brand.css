@@ -1,10 +1,18 @@
-.brand-table-td {
+.brand-table-td-name {
     width: 30%;
+}
+
+.brand-table-td-bsin {
+    width: 5%;
 }
 
 .brand-table-td-logo {
     width: 20%;
     text-align:center;
+}
+
+.brand-table-td-link {
+    width: 30%;
 }
 
 .brand-table-td-logo-full {
