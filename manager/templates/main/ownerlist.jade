@@ -36,7 +36,7 @@ block content
             a(href='{% url "ownerlist" %}{{ owner.owner_cd }}') {{ owner.owner_nm }}
           td.brand-table-td-link
             if owner.owner_link
-              a(href="{{ owner.owner_link }}") {{ owner.owner_link }}
+              a(href=owner.owner_link) {{ owner.owner_link }}
             else
               h4 No link
               
