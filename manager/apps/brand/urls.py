@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, url
-from manager.apps.brand.views import BrandListView
-from manager.apps.brand.views import BrandView
+from manager.apps.brand.views import BrandListView, BrandView, OwnerListView
 
 urlpatterns = patterns(
     '',

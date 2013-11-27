@@ -38,7 +38,6 @@ class BrandListView(View):
     """
 
     template_name = 'main/brandlist.jade'
-    allBrands = Brand.objects.all()
 
     def get(self, request):
         search = request.GET.get('search', '')
