@@ -10,7 +10,7 @@ https://docs.djangoproject.com/fr/1.6/howto/legacy-databases/
 from __future__ import unicode_literals
 from django.db import models
 from manager.libs.snippets.bsin import BSIN
-from django.core.validators import RegexValidator
+from django.core.validators import MaxLengthValidator
 from django.templatetags.static import static
 import os
 
@@ -18,34 +18,36 @@ import os
 def get_brand_logo_path(instance, filename):
     return os.path.join('brand', 'logo', '%s.jpg' % instance.bsin)
 
+
 class Brand(models.Model):
     """
     Brand.
     """
 
-    bsin = models.CharField(db_column='BSIN', primary_key=True, max_length=6,
+    bsin = models.CharField(
+        db_column='BSIN', primary_key=True, max_length=6,
         verbose_name='BSIN', validators=[BSIN.BSINValidator])
-    brand_nm = models.CharField(db_column='BRAND_NM', max_length=255,
-        verbose_name='Brand name')
+    brand_nm = models.CharField(
+        db_column='BRAND_NM', max_length=255, verbose_name='Brand name')
     owner_cd = models.ForeignKey(
         'BrandOwner', db_column='OWNER_CD', blank=True, null=True,
         verbose_name='Owner')
-    brand_type_cd = models.ForeignKey('BrandType', db_column='BRAND_TYPE_CD',
-        verbose_name='Brand type')
+    brand_type_cd = models.ForeignKey(
+        'BrandType', db_column='BRAND_TYPE_CD', verbose_name='Brand type')
     brand_link = models.URLField(
         db_column='BRAND_LINK', max_length=255, blank=True, null=True,
         verbose_name='Brand link')
     brand_logo = models.ImageField(
         db_column='BRAND_LOGO', verbose_name='Brand logo',
         upload_to=get_brand_logo_path, blank=True, null=True)
-    flag_delete = models.BooleanField(db_column='FLAG_DELETE', default=False,
-        verbose_name='Deleted flag')
+    flag_delete = models.BooleanField(
+        db_column='FLAG_DELETE', default=False, verbose_name='Deleted flag')
     last_modified = models.DateTimeField(
         db_column='LAST_MODIFIED', auto_now=True,
         verbose_name='Last modified')
-    comments = models.CharField(
-        db_column='COMMENTS', max_length=255, blank=True, null=True,
-        verbose_name='Comments')
+    comments = models.TextField(
+        db_column='COMMENTS', validators=[MaxLengthValidator(255)], blank=True,
+        null=True, verbose_name='Comments')
 
     flag_delete.admin_order_field = 'flag_delete'
     flag_delete.boolean = False
@@ -86,7 +88,7 @@ class Brand(models.Model):
         Check if BSIN availability and return a boolean.
         """
         try:
-            self.objects.get(bsin=bsin)
+            cls.objects.get(bsin=bsin)
             return False
         except Brand.DoesNotExist:
             return True
@@ -107,19 +109,20 @@ class BrandOwner(models.Model):
     """
 
     owner_cd = models.IntegerField(db_column='OWNER_CD', primary_key=True)
-    owner_nm = models.CharField(db_column='OWNER_NM', max_length=255,
-        verbose_name='Owner name')
-    owner_link = models.CharField(db_column='OWNER_LINK', max_length=255,
-        verbose_name='Owner website')
-    owner_wiki_en = models.CharField(db_column='OWNER_WIKI_EN', max_length=255,
+    owner_nm = models.CharField(
+        db_column='OWNER_NM', max_length=255, verbose_name='Owner name')
+    owner_link = models.CharField(
+        db_column='OWNER_LINK', max_length=255, verbose_name='Owner website')
+    owner_wiki_en = models.CharField(
+        db_column='OWNER_WIKI_EN', max_length=255,
         verbose_name='Wikipedia English website')
 
     class Meta:
         db_table = 'brand_owner'
+        ordering = ['owner_nm']
 
     def __unicode__(self):
         return self.owner_nm
-        ordering = ['owner_nm']
 
 
 class BrandType(models.Model):
