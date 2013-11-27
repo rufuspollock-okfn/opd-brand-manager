@@ -86,9 +86,9 @@ Then re-prepare the test database (except the role 'pod', which stays there)
 
 To contribute to the brand manager, you must :
 
-- Download and read the specifications from the [docs folder] [8] at the repository's root ;
-- Leave a message on the "[Who wants to contribute] [9]" issue #9 ticket ;
-- Wait to be assigned an issue or take an unasigned issue dropping a comment on it ;
+1. Download and read the specifications from the [docs folder] [8] at the repository's root.
+- Leave a message on the "[Who wants to contribute] [9]" issue #9 ticket.
+- Wait to be assigned an issue or take an unasigned issue dropping a comment on it.
 - Fork the repository, do your modifications, push them and create a pull request on GitHub. More information about how to contribute in [GitHub documentation] [10].
 
 As much as possible, your changes must validate [PEP8] [11] coding standards. You can also check your contributions using [Pylint] [12].
