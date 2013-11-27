@@ -5,6 +5,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
 
+
 class OwnerListView(View):
     r"""
     """
@@ -31,6 +32,21 @@ class OwnerListView(View):
         return render(request, self.template_name, {
         'owners': owners,
         'search': search})
+
+
+class OwnerView(View):
+    r"""
+    """
+
+    template_name = 'main/owner.jade'
+
+    def get(self, request, cd):
+        try:
+            owner = BrandOwner.objects.get(owner_cd__iexact=cd)
+        except ObjectDoesNotExist:
+            return HttpResponseNotFound('<h1>Owner not found</h1>')
+        return render(request, self.template_name, {
+        'owner': owner})
 
 
 class BrandListView(View):
