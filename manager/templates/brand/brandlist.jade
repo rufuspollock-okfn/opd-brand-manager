@@ -35,9 +35,9 @@ block content
       for brand in brands
         tr
           td.brand-table-td-name
-            a(href='{% url "brandlist" %}{{ brand.bsin }}') {{ brand.brand_nm }}
+            a(href='{% url "brand" brand.bsin %}') {{ brand.brand_nm }}
           td.brand-table-td-bsin
-            a(href='{% url "brandlist" %}{{ brand.bsin }}') {{ brand.bsin }}
+            a(href='{% url "brand" brand.bsin %}') {{ brand.bsin }}
           td.brand-table-td-logo
             if brand.brand_logo
               img(src="{{ MEDIA_URL }}{{ brand.brand_logo.name }}", title=brand.brand_nm, alt=brand.brand_nm, height='50')

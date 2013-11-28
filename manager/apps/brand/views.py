@@ -10,7 +10,7 @@ class OwnerListView(View):
     r"""
     """
 
-    template_name = 'main/ownerlist.jade'
+    template_name = 'brand/ownerlist.jade'
 
     def get(self, request):
         search = request.GET.get('search', '')
@@ -38,7 +38,7 @@ class OwnerView(View):
     r"""
     """
 
-    template_name = 'main/owner.jade'
+    template_name = 'brand/owner.jade'
 
     def get(self, request, cd):
         try:
@@ -53,7 +53,7 @@ class BrandListView(View):
     r"""
     """
 
-    template_name = 'main/brandlist.jade'
+    template_name = 'brand/brandlist.jade'
 
     def get(self, request):
         search = request.GET.get('search', '')
@@ -83,7 +83,7 @@ class BrandView(View):
     r"""
     """
 
-    template_name = 'main/brand.jade'
+    template_name = 'brand/brand.jade'
 
     def get(self, request, bsin):
         try:

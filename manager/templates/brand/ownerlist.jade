@@ -33,7 +33,7 @@ block content
       for owner in owners
         tr
           td.brand-table-td-name
-            a(href='{% url "ownerlist" %}{{ owner.owner_cd }}') {{ owner.owner_nm }}
+            a(href='{% url "owner" owner.owner_cd %}{{ owner.owner_cd }}') {{ owner.owner_nm }}
           td.brand-table-td-link
             if owner.owner_link
               a(href=owner.owner_link) {{ owner.owner_link }}

@@ -7,10 +7,10 @@ urlpatterns = patterns(
     '',
 
     url(r'', include('manager.apps.main.urls')),
+    url(r'', include('manager.apps.brand.urls')),
 
     # Examples:
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^brand/', include('manager.apps.brand.urls')),
 )

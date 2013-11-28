@@ -111,10 +111,11 @@ class BrandOwner(models.Model):
     owner_cd = models.IntegerField(db_column='OWNER_CD', primary_key=True)
     owner_nm = models.CharField(
         db_column='OWNER_NM', max_length=255, verbose_name='Owner name')
-    owner_link = models.CharField(
-        db_column='OWNER_LINK', max_length=255, verbose_name='Owner website')
-    owner_wiki_en = models.CharField(
-        db_column='OWNER_WIKI_EN', max_length=255,
+    owner_link = models.URLField(
+        db_column='OWNER_LINK', max_length=255, null=True, blank=True,
+        verbose_name='Owner website')
+    owner_wiki_en = models.URLField(
+        db_column='OWNER_WIKI_EN', max_length=255, null=True, blank=True,
         verbose_name='Wikipedia English website')
 
     class Meta:
