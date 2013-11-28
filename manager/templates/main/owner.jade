@@ -1,0 +1,18 @@
+- extends '__base.jade'
+
+block style
+  link(rel='stylesheet', href='{{ STATIC_URL }}brand/css/brand.css')
+
+block content
+
+  h1 {{owner.owner_nm}}
+      
+  table
+    tbody
+      td.brand-table-td-infos
+        if owner.owner_link
+          p <b>Website</b>: 
+            a(href=owner.owner_link) {{ owner.owner_link }}
+        if owner.owner_wiki_en
+          p 
+            a(href="http://en.wikipedia.org/wiki/{{ owner.owner_wiki_en }}") See the article on Wikipedia

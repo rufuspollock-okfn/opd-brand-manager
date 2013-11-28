@@ -1,0 +1,49 @@
+- extends '__base.jade'
+
+block style
+  link(rel='stylesheet', href='{{ STATIC_URL }}brand/css/brand.css')
+
+block content
+
+  h1 Owners List
+
+  div
+    form(method="get")
+      input(type="text", name="search", value="{{search}}")
+      input(type="submit", value="Search")
+      
+  if search
+    h2 Search results for {{search}}
+    
+  div.pagination
+    span.step-links
+      if owners.has_previous
+        a(href="?page={{ owners.previous_page_number }}") Previous  
+      span.current Page {{ owners.number }} of {{ owners.paginator.num_pages }}.  
+      if owners.has_next
+        a(href="?page={{ owners.next_page_number }}") Next
+
+  br
+
+  table
+    thead
+      tr: th Owner
+          th Link
+    tbody
+      for owner in owners
+        tr
+          td.brand-table-td-name
+            a(href='{% url "ownerlist" %}{{ owner.owner_cd }}') {{ owner.owner_nm }}
+          td.brand-table-td-link
+            if owner.owner_link
+              a(href=owner.owner_link) {{ owner.owner_link }}
+            else
+              h4 No link
+              
+  div.pagination
+    span.step-links
+      if owners.has_previous
+        a(href="?page={{ owners.previous_page_number }}") Previous  
+      span.current Page {{ owners.number }} of {{ owners.paginator.num_pages }}.  
+      if owners.has_next
+        a(href="?page={{ owners.next_page_number }}") Next

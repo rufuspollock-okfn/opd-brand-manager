@@ -6,12 +6,54 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
 
 
+class OwnerListView(View):
+    r"""
+    """
+
+    template_name = 'main/ownerlist.jade'
+
+    def get(self, request):
+        search = request.GET.get('search', '')
+        if search != '':
+            owner_list = BrandOwner.objects.filter(owner_nm__icontains=search)
+        else:
+            owner_list = BrandOwner.objects.all()
+        paginator = Paginator(owner_list, 25) # Show 25 owners per page
+
+        page = request.GET.get('page')
+        try:
+            owners = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            owners = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range, deliver last page of results.
+            owners = paginator.page(paginator.num_pages)
+        return render(request, self.template_name, {
+        'owners': owners,
+        'search': search})
+
+
+class OwnerView(View):
+    r"""
+    """
+
+    template_name = 'main/owner.jade'
+
+    def get(self, request, cd):
+        try:
+            owner = BrandOwner.objects.get(owner_cd__iexact=cd)
+        except ObjectDoesNotExist:
+            return HttpResponseNotFound('<h1>Owner not found</h1>')
+        return render(request, self.template_name, {
+        'owner': owner})
+
+
 class BrandListView(View):
     r"""
     """
 
     template_name = 'main/brandlist.jade'
-    allBrands = Brand.objects.all()
 
     def get(self, request):
         search = request.GET.get('search', '')

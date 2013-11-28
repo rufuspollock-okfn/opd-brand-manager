@@ -40,12 +40,12 @@ block content
             a(href='{% url "brandlist" %}{{ brand.bsin }}') {{ brand.bsin }}
           td.brand-table-td-logo
             if brand.brand_logo
-              img(src="{{ MEDIA_URL }}{{ brand.brand_logo.name }}", title="{{ brand.brand_nm }}", alt="{{brand.brand_nm}}", height='50')
+              img(src="{{ MEDIA_URL }}{{ brand.brand_logo.name }}", title=brand.brand_nm, alt=brand.brand_nm, height='50')
             else
-              img(src="{{ STATIC_URL }}brand/images/no_picture.gif", title="{{ brand.brand_nm }}", alt="{{brand.brand_nm}}", height='50')
+              img(src="{{ STATIC_URL }}brand/images/no_picture.gif", title=brand.brand_nm, alt=brand.brand_nm, height='50')
           td.brand-table-td-link
             if brand.brand_link
-              a(href="{{ brand.brand_link }}") {{ brand.brand_link }}
+              a(href=brand.brand_link) {{ brand.brand_link }}
             else
               h4 No link
               
