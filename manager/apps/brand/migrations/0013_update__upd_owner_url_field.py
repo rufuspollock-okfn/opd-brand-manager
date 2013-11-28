@@ -34,9 +34,9 @@ class Migration(SchemaMigration):
         u'brand.brandowner': {
             'Meta': {'ordering': "[u'owner_nm']", 'object_name': 'BrandOwner', 'db_table': "u'brand_owner'"},
             'owner_cd': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True', 'db_column': "u'OWNER_CD'"}),
-            'owner_link': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_column': "u'OWNER_LINK'"}),
+            'owner_link': ('django.db.models.fields.URLField', [], {'max_length': '255', 'null': 'True', 'db_column': "u'OWNER_LINK'", 'blank': 'True'}),
             'owner_nm': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_column': "u'OWNER_NM'"}),
-            'owner_wiki_en': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_column': "u'OWNER_WIKI_EN'"})
+            'owner_wiki_en': ('django.db.models.fields.URLField', [], {'max_length': '255', 'null': 'True', 'db_column': "u'OWNER_WIKI_EN'", 'blank': 'True'})
         },
         u'brand.brandtype': {
             'Meta': {'object_name': 'BrandType', 'db_table': "u'brand_type'"},
