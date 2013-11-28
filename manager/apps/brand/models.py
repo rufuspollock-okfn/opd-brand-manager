@@ -103,6 +103,10 @@ class Brand(models.Model):
         pass
 
 
+def get_owner_logo_path(instance, filename):
+    return os.path.join('owner', 'logo', '%06d.jpg' % instance.owner_cd)
+
+
 class BrandOwner(models.Model):
     """
     Legal owner of the brand.
@@ -111,6 +115,9 @@ class BrandOwner(models.Model):
     owner_cd = models.IntegerField(db_column='OWNER_CD', primary_key=True)
     owner_nm = models.CharField(
         db_column='OWNER_NM', max_length=255, verbose_name='Owner name')
+    owner_logo = models.ImageField(
+        db_column='OWNER_LOGO', verbose_name='Owner logo',
+        upload_to=get_owner_logo_path, blank=True, null=True)
     owner_link = models.URLField(
         db_column='OWNER_LINK', max_length=255, null=True, blank=True,
         verbose_name='Owner website')
@@ -124,6 +131,16 @@ class BrandOwner(models.Model):
 
     def __unicode__(self):
         return self.owner_nm
+
+    def owner_logo_admin(self):
+        if self.owner_logo:
+            return '<img width="32" height"32" src="%s"/>' % (
+                self.owner_logo.url)
+        else:
+            return '<img width="32" height"32" src="%s" />' % (
+                static('brand/images/no_picture.gif'))
+
+    owner_logo_admin.allow_tags = True
 
 
 class BrandType(models.Model):
