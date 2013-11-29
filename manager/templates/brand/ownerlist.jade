@@ -5,7 +5,7 @@ block style
 
 block content
 
-  h1 Owners List
+  h1 Owner List
 
   div
     form(method="get")
@@ -27,11 +27,17 @@ block content
 
   table
     thead
-      tr: th Owner
-          th Link
+      tr: th Logo
+          th Owner Name
+          th Website
     tbody
       for owner in owners
         tr
+          td.owner-table-td-logo
+            if owner.owner_logo
+              img(src="{{ MEDIA_URL }}{{ owner.owner_logo.name }}", title=owner.owner_nm, alt=owner.owner_nm, height='50')
+            else
+              img(src="{{ STATIC_URL }}brand/images/no_picture.gif", title=brand.owner_nm, alt=brand.owner_nm, height='50')
           td.brand-table-td-name
             a(href='{% url "owner" owner.owner_cd %}{{ owner.owner_cd }}') {{ owner.owner_nm }}
           td.brand-table-td-link
