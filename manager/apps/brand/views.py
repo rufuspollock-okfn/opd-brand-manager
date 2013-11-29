@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
-from .models import Brand, BrandOwner, BrandType
+from .models import Brand, BrandOwner
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
@@ -18,7 +18,7 @@ class OwnerListView(View):
             owner_list = BrandOwner.objects.filter(owner_nm__icontains=search)
         else:
             owner_list = BrandOwner.objects.all()
-        paginator = Paginator(owner_list, 25) # Show 25 owners per page
+        paginator = Paginator(owner_list, 25)  # Show 25 owners per page
 
         page = request.GET.get('page')
         try:
@@ -30,8 +30,8 @@ class OwnerListView(View):
             # If page is out of range, deliver last page of results.
             owners = paginator.page(paginator.num_pages)
         return render(request, self.template_name, {
-        'owners': owners,
-        'search': search})
+                      'owners': owners,
+                      'search': search})
 
 
 class OwnerView(View):
@@ -46,7 +46,7 @@ class OwnerView(View):
         except ObjectDoesNotExist:
             return HttpResponseNotFound('<h1>Owner not found</h1>')
         return render(request, self.template_name, {
-        'owner': owner})
+                      'owner': owner})
 
 
 class BrandListView(View):
@@ -59,11 +59,11 @@ class BrandListView(View):
         search = request.GET.get('search', '')
         if search != '':
             brand_list = Brand.objects.filter(brand_nm__icontains=search)
-            brand_list = filter(lambda brand: brand.flag_delete == False,
-            brand_list)
+            brand_list = filter(lambda brand: not brand.flag_delete,
+                                brand_list)
         else:
             brand_list = Brand.objects.filter(flag_delete=False)
-        paginator = Paginator(brand_list, 25) # Show 25 brands per page
+        paginator = Paginator(brand_list, 25)  # Show 25 brands per page
 
         page = request.GET.get('page')
         try:
@@ -75,8 +75,8 @@ class BrandListView(View):
             # If page is out of range, deliver last page of results.
             brands = paginator.page(paginator.num_pages)
         return render(request, self.template_name, {
-        'brands': brands,
-        'search': search})
+                      'brands': brands,
+                      'search': search})
 
 
 class BrandView(View):
@@ -91,5 +91,5 @@ class BrandView(View):
         except ObjectDoesNotExist:
             return HttpResponseNotFound('<h1>Brand not found</h1>')
         return render(request, self.template_name, {
-        'brand': brand,
-        'owner': brand.owner_cd})
+                      'brand': brand,
+                      'owner': brand.owner_cd})

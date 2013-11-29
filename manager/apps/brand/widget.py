@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.safestring import mark_safe
 
+
 class AdminImageWidget(forms.FileInput):
     """
     A ImageField Widget for admin that shows a thumbnail.
