@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django import forms
+from django.db import models
 from .models import Brand, BrandOwner, BrandType
+from .widget import AdminImageWidget
 
 
 class BrandTypeAdmin(admin.ModelAdmin):
@@ -36,6 +38,9 @@ class BrandAdmin(admin.ModelAdmin):
     readonly_fields = ('bsin', 'last_modified')
     search_fields = ['bsin', 'brand_nm', 'owner_cd__owner_nm']
     list_filter = ('flag_delete', )
+    formfield_overrides = {
+        models.ImageField: {'widget': AdminImageWidget},
+    }
 
     # Never delete a brand, update its BSIN
     def has_delete_permission(self, request, obj=None):
