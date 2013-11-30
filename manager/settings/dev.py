@@ -42,4 +42,5 @@ COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_OUTPUT_DIR = '/cache/'
 COMPRESS_STORAGE = 'compressor.storage.CompressorFileStorage'
 
+MEDIA_ROOT = 'media/'
 MEDIA_URL = 'https://s3.amazonaws.com/product.okfn.org/brand/media/'
