@@ -22,3 +22,24 @@
 .brand-table-td-infos {
     width: 60%;
 }
+
+
+#tab-listing th {
+    color:#FFFFFF;
+    background-color:#CCCCCC;
+    font-size: 11px;
+    padding:3px 5px 3px 5px;
+}
+
+
+					
+#tab-listing td {
+    padding:3px 5px 3px 5px;
+    background-color:#FFFFFF;
+}
+
+#tab-listing a { text-decoration: none;color:#000000;}	
+
+#tab-listing a:visited {text-decoration: none;color:#000000;}
+
+#tab-listing a:active {text-decoration: none;color:#000000;}

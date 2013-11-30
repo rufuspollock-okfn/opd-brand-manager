@@ -1,0 +1,37 @@
+- extends '__base.jade'
+
+block style
+  link(rel='stylesheet', href='{{ STATIC_URL }}brand/css/proposal.css')
+
+block content
+
+  h1 Propose a brand
+
+  #proposal-form
+
+    form(action="http://product.okfn.org/brand/proposal",method="post",enctype="multipart/form-data")
+
+      label(for="proposal-brand-name")
+      | Brand Name (*)
+      input(id="proposal-brand-name",name="proposal-brand-name",type="text",value="",size="20")
+
+      label(for="proposal-brand-type")
+      | Type of Name (*)
+      input(id="proposal-brand-type-1",name="proposal-brand-type",type="radio",value="1",checked)
+      | Manufacturer Brand
+      input(id="proposal-brand-type-2",name="proposal-brand-type",type="radio",value="2")
+      | Retailer Brand
+
+      label(for="proposal-owner-name")
+      | Owner Name (company belonging the brand)
+      input(id="proposal-owner-name",name="proposal-owner-name",type="text",value="",size="20")
+
+      label(for="proposal-brand-website")
+      | Website of the brand (*)
+      input(id="proposal-brand-website",name="proposal-brand-website",type="text",value="http://",size="20")
+
+      label(for="proposal-comment")
+      | Website of the brand (*)
+      input(id="proposal-comment",name="proposal-comment",type="textarea",value="",cols="5",rows="5")
+
+      button(onclick="submit()",value="Send the proposal")
