@@ -138,3 +138,17 @@ STATICFILES_FINDERS = (
     # http://django-compressor.readthedocs.org/en/master/quickstart/
     'compressor.finders.CompressorFinder',
 )
+
+# Password hashers : for more password security
+# https://docs.djangoproject.com/en/dev/topics/auth/passwords/#using-bcrypt-
+# with-django
+
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+)

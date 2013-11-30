@@ -15,3 +15,4 @@ BeautifulSoup==3.2.1
 lxml==3.2.4
 Pillow==2.2.1
 psycopg2==2.5.1
+bcrypt==1.0.2
