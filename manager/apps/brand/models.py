@@ -41,7 +41,7 @@ class Brand(models.Model):
         db_column='BRAND_LOGO', verbose_name='Brand logo',
         upload_to=get_brand_logo_path, blank=True, null=True)
     flag_delete = models.BooleanField(
-        db_column='FLAG_DELETE', default=False, verbose_name='Deleted flag')
+        db_column='FLAG_DELETE', default=False, verbose_name='Deleted flag', editable=False)
     last_modified = models.DateTimeField(
         db_column='LAST_MODIFIED', auto_now=True,
         verbose_name='Last modified')
