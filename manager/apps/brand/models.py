@@ -162,6 +162,12 @@ class BrandType(models.Model):
         return self.brand_type_nm
 
 
+def get_brand_proposal_logo_path(instance, filename):
+    return os.path.join('brandproposal',
+                        'logo',
+                        '%s.jpg' % instance.proposal_cd)
+
+
 class BrandProposal(models.Model):
     """
     BrandProposal. Anyone can create a proposal, but it can only be
@@ -182,7 +188,7 @@ class BrandProposal(models.Model):
         verbose_name='Brand link')
     brand_logo = models.ImageField(
         db_column='BRAND_LOGO', verbose_name='Brand logo',
-        upload_to=get_brand_logo_path, blank=True, null=True)
+        upload_to=get_brand_proposal_logo_path, blank=True, null=True)
     insert_date = models.DateTimeField(
         db_column='INSERT_DATE', auto_now_add=True,
         verbose_name='Insert date')

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
-from .models import Brand, BrandOwner
+from .models import Brand, BrandOwner, BrandProposal
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
@@ -112,6 +112,18 @@ class BrandProposalView(FormView):
                       'form': form})
 
     def form_valid(self, form):
+        proposal = BrandProposal(
+            brand_nm=form.cleaned_data['brand_nm'],
+            owner_nm=form.cleaned_data['owner_nm'],
+            brand_link=form.cleaned_data['brand_link'],
+            brand_type_cd=form.cleaned_data['brand_type'],
+            comments=form.cleaned_data['comments'])
+        proposal.save()
+
+        #save the logo after the proposal is created in the DB
+        #because upload_to requires the primary key to be set
+        proposal.brand_logo = form.cleaned_data['brand_logo']
+        proposal.save()
         return super(BrandProposalView, self).form_valid(form)
 
 
