@@ -64,8 +64,7 @@ class Brand(models.Model):
         db_column='BRAND_LOGO', verbose_name='Brand logo',
         upload_to=get_brand_logo_path, blank=True, null=True)
     flag_delete = models.BooleanField(
-        db_column='FLAG_DELETE', default=False, verbose_name='Deleted flag',
-        editable=False)
+        db_column='FLAG_DELETE', default=False, verbose_name='Deleted flag')
     last_modified = models.DateTimeField(
         db_column='LAST_MODIFIED', auto_now=True,
         verbose_name='Last modified')
@@ -103,9 +102,9 @@ class Brand(models.Model):
         """
         Generates an available BSIN.
         """
-        bsin = BSIN.generate_BSIN()
+        bsin = BSIN.generate_bsin()
         while not cls.is_available_bsin(bsin):
-            bsin = BSIN.generate_BSIN()
+            bsin = BSIN.generate_bsin()
 
         return bsin
 
@@ -121,6 +120,9 @@ class Brand(models.Model):
             return True
 
     def save(self, *args, **kwargs):
+        # Generate a BSIN is the brand hasn't got one (creation)
+        if not self.bsin:
+            self.bsin = self.get_available_bsin()
         super(Brand, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
