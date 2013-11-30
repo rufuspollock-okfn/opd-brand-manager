@@ -11,6 +11,7 @@ from __future__ import unicode_literals
 from django.db import models
 from manager.libs.snippets.bsin import BSIN
 from django.core.validators import MaxLengthValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.templatetags.static import static
 import os
 
@@ -159,3 +160,53 @@ class BrandType(models.Model):
 
     def __unicode__(self):
         return self.brand_type_nm
+
+
+class BrandProposal(models.Model):
+    """
+    BrandProposal. Anyone can create a proposal, but it can only be
+    transformed into a real Brand with a bsin by a moderator
+    or an administrator
+    """
+
+    proposal_cd = models.AutoField(
+        db_column='PROPOSAL_CD', primary_key=True)
+    brand_nm = models.CharField(
+        db_column='BRAND_NM', max_length=255, verbose_name='Brand name')
+    brand_type_cd = models.ForeignKey(
+        'BrandType', db_column='BRAND_TYPE_CD', verbose_name='Brand type')
+    owner_nm = models.CharField(
+        db_column='OWNER_NM', max_length=255, verbose_name='Owner name')
+    brand_link = models.URLField(
+        db_column='BRAND_LINK', max_length=255, blank=True, null=True,
+        verbose_name='Brand link')
+    brand_logo = models.ImageField(
+        db_column='BRAND_LOGO', verbose_name='Brand logo',
+        upload_to=get_brand_logo_path, blank=True, null=True)
+    insert_date = models.DateTimeField(
+        db_column='INSERT_DATE', auto_now_add=True,
+        verbose_name='Insert date')
+    comments = models.TextField(
+        db_column='COMMENTS', validators=[MaxLengthValidator(255)], blank=True,
+        null=True, verbose_name='Comments')
+    status = models.IntegerField(
+        db_column='STATUS',
+        validators=[MinValueValidator(4), MaxValueValidator(4)],
+        default=1, verbose_name='Status')
+
+    def brand_logo_admin(self):
+        if self.brand_logo:
+            return '<img width="32" height"32" src="%s"/>' % (
+                self.brand_logo.url)
+        else:
+            return '<img width="32" height"32" src="%s" />' % (
+                static('brand/images/no_picture.gif'))
+
+    brand_logo_admin.allow_tags = True
+
+    class Meta:
+        db_table = 'brand_proposal'
+        ordering = ['insert_date']
+
+    def __unicode__(self):
+        return self.brand_nm
