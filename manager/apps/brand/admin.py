@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django import forms
 from django.db import models
 from .models import Brand, BrandOwner, BrandType
 from .widget import AdminImageWidget
@@ -35,16 +34,18 @@ class BrandAdmin(admin.ModelAdmin):
     fields_add = (
         (None, {
             'classes': ('wide',),
-            'fields': ('bsin', 'brand_nm', 'owner_cd', 'brand_type_cd', 'brand_link',
-                       'brand_logo', 'comments', 'last_modified')}
-         ),
+            'fields': ('bsin', 'brand_nm', 'owner_cd', 'brand_type_cd',
+                       'brand_link', 'brand_logo', 'comments', 'last_modified')
+        }),
     )
     fields_change = (
         (None, {
             'classes': ('wide',),
-            'fields': ('bsin', 'brand_nm', 'owner_cd', 'brand_type_cd', 'brand_link',
-                       'brand_logo', ('flag_delete', 'comments'), 'last_modified')}
-         ),
+            'fields': ('bsin', 'brand_nm', 'owner_cd', 'brand_type_cd',
+                       'brand_link', 'brand_logo',
+                       ('flag_delete', 'comments'),
+                       'last_modified')
+        }),
     )
     readonly_fields = ('bsin', 'last_modified', 'flag_delete')
     search_fields = ['bsin', 'brand_nm', 'owner_cd__owner_nm']
