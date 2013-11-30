@@ -21,6 +21,27 @@ def get_brand_logo_path(instance, filename):
     return os.path.join('brand', 'logo', '%s.jpg' % instance.bsin)
 
 
+class SoftDeletionQuerySet(models.query.QuerySet):
+    """
+    Custom queryset to avoid bulk delete.
+    """
+
+    def delete(self):
+        pass
+
+
+class SoftDeletionManager(models.Manager):
+    """
+    Custom manager to avoid bulk delete.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super(SoftDeletionManager, self).__init__(*args, **kwargs)
+
+    def get_queryset(self):
+        return SoftDeletionQuerySet(self.model)
+
+
 class Brand(models.Model):
     """
     Brand.
@@ -43,7 +64,8 @@ class Brand(models.Model):
         db_column='BRAND_LOGO', verbose_name='Brand logo',
         upload_to=get_brand_logo_path, blank=True, null=True)
     flag_delete = models.BooleanField(
-        db_column='FLAG_DELETE', default=False, verbose_name='Deleted flag', editable=False)
+        db_column='FLAG_DELETE', default=False, verbose_name='Deleted flag',
+        editable=False)
     last_modified = models.DateTimeField(
         db_column='LAST_MODIFIED', auto_now=True,
         verbose_name='Last modified')
@@ -51,10 +73,14 @@ class Brand(models.Model):
         db_column='COMMENTS', validators=[MaxLengthValidator(255)], blank=True,
         null=True, verbose_name='Comments')
 
+    objects = SoftDeletionManager()
+
+    # Flag delete
     flag_delete.admin_order_field = 'flag_delete'
     flag_delete.boolean = False
     flag_delete.short_description = 'Brand is deleted?'
 
+    # Brand logo
     def brand_logo_admin(self):
         if self.brand_logo:
             return '<img width="32" height"32" src="%s"/>' % (
@@ -62,7 +88,6 @@ class Brand(models.Model):
         else:
             return '<img width="32" height"32" src="%s" />' % (
                 static('brand/images/no_picture.gif'))
-
     brand_logo_admin.allow_tags = True
 
     class Meta:
@@ -102,6 +127,7 @@ class Brand(models.Model):
         """
         Never delete a brand.
         """
+
         pass
 
 
@@ -127,6 +153,8 @@ class BrandOwner(models.Model):
         db_column='OWNER_WIKI_EN', max_length=255, null=True, blank=True,
         verbose_name='Wikipedia English website')
 
+    objects = SoftDeletionManager()
+
     class Meta:
         db_table = 'brand_owner'
         ordering = ['owner_nm']
@@ -144,6 +172,13 @@ class BrandOwner(models.Model):
 
     owner_logo_admin.allow_tags = True
 
+    def delete(self, *args, **kwargs):
+        """
+        Never delete an owner.
+        """
+
+        pass
+
 
 class BrandType(models.Model):
     """
@@ -156,11 +191,20 @@ class BrandType(models.Model):
         db_column='BRAND_TYPE_CD', primary_key=True)
     brand_type_nm = models.CharField(db_column='BRAND_TYPE_NM', max_length=255)
 
+    objects = SoftDeletionManager()
+
     class Meta:
         db_table = 'brand_type'
 
     def __unicode__(self):
         return self.brand_type_nm
+
+    def delete(self, *args, **kwargs):
+        """
+        Never delete a type.
+        """
+
+        pass
 
 
 def get_brand_proposal_logo_path(instance, filename):
