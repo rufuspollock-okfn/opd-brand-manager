@@ -103,7 +103,7 @@ class BrandProposalView(FormView):
 
     template_name = 'brand/brandproposalplaceholder.jade'
     form_class = BrandProposalForm
-    success_url = '/brand/'
+    success_url = '/brand/proposed/'
 
     def get(self, request):
         form = BrandProposalForm() # An unbound form
@@ -113,3 +113,13 @@ class BrandProposalView(FormView):
 
     def form_valid(self, form):
         return super(BrandProposalView, self).form_valid(form)
+
+
+class BrandProposedView(View):
+    r"""
+    """
+
+    template_name = 'brand/brandproposed.jade'
+
+    def get(self, request):
+        return render(request, self.template_name)

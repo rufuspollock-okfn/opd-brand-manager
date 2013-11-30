@@ -1,0 +1,11 @@
+- extends '__base.jade'
+
+block style
+  link(rel='stylesheet', href='{{ STATIC_URL }}brand/css/brand.css')
+
+block content
+
+  h1 Thanks for your proposition, we'll examine it shortly and get back to you
+  
+  a(href="{% url 'home' %}")
+    p Back to home
