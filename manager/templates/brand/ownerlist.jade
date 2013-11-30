@@ -39,7 +39,7 @@ block content
             else
               img(src="{{ STATIC_URL }}brand/images/no_picture.gif", title=brand.owner_nm, alt=brand.owner_nm, height='50')
           td.brand-table-td-name
-            a(href='{% url "owner" owner.owner_cd %}{{ owner.owner_cd }}') {{ owner.owner_nm }}
+            a(href='{% url "owner" owner.owner_cd %}') {{ owner.owner_nm }}
           td.brand-table-td-link
             if owner.owner_link
               a(href=owner.owner_link) {{ owner.owner_link }}
