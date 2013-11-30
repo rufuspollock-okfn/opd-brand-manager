@@ -1,18 +1,18 @@
 from django.shortcuts import render
 from django.views.generic import View
-from .models import Brand, BrandOwner, BrandProposal
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
-from .forms import BrandProposalForm
 from django.views.generic.edit import FormView
 from django.contrib.auth.models import User
-from random import choice
-from string import ascii_lowercase, digits
+from manager.libs.snippets.username import generate_random_username
+from .models import Brand, BrandOwner, BrandProposal
+from .forms import BrandProposalForm
 
 
 class OwnerListView(View):
     r"""
+    Owner list.
     """
 
     template_name = 'brand/ownerlist.jade'
@@ -41,6 +41,7 @@ class OwnerListView(View):
 
 class OwnerView(View):
     r"""
+    Owner details.
     """
 
     template_name = 'brand/owner.jade'
@@ -56,6 +57,7 @@ class OwnerView(View):
 
 class BrandListView(View):
     r"""
+    Brand list.
     """
 
     template_name = 'brand/brandlist.jade'
@@ -86,6 +88,7 @@ class BrandListView(View):
 
 class BrandView(View):
     r"""
+    Brand details.
     """
 
     template_name = 'brand/brand.jade'
@@ -100,25 +103,9 @@ class BrandView(View):
                       'owner': brand.owner_cd})
 
 
-def generate_random_username(length=16,
-                             chars=ascii_lowercase + digits,
-                             split=4, delimiter='-'):
-    username = ''.join([choice(chars) for i in xrange(length)])
-    if split:
-        username = delimiter.join(
-            [username[start:start + split]
-                for start in range(0, len(username), split)])
-        try:
-            User.objects.get(username=username)
-            return generate_random_username(
-                length=length, chars=chars,
-                split=split, delimiter=delimiter)
-        except User.DoesNotExist:
-            return username
-
-
 class BrandProposalView(FormView):
     r"""
+    View to allow guests to propose a brand.
     """
 
     template_name = 'brand/brandproposalplaceholder.jade'
@@ -126,7 +113,7 @@ class BrandProposalView(FormView):
     success_url = '/brand/proposed/'
 
     def get(self, request):
-        form = BrandProposalForm() # An unbound form
+        form = BrandProposalForm()  # An unbound form
 
         return render(request, self.template_name, {
                       'form': form})
@@ -155,13 +142,3 @@ class BrandProposalView(FormView):
         proposal.brand_logo = form.cleaned_data['brand_logo']
         proposal.save()
         return super(BrandProposalView, self).form_valid(form)
-
-
-class BrandProposedView(View):
-    r"""
-    """
-
-    template_name = 'brand/brandproposed.jade'
-
-    def get(self, request):
-        return render(request, self.template_name)
