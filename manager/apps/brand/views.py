@@ -4,6 +4,8 @@ from .models import Brand, BrandOwner
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
+from .forms import BrandProposalForm
+from django.views.generic.edit import FormView
 
 
 class OwnerListView(View):
@@ -93,3 +95,21 @@ class BrandView(View):
         return render(request, self.template_name, {
                       'brand': brand,
                       'owner': brand.owner_cd})
+
+
+class BrandProposalView(FormView):
+    r"""
+    """
+
+    template_name = 'brand/brandproposalplaceholder.jade'
+    form_class = BrandProposalForm
+    success_url = '/brand/'
+
+    def get(self, request):
+        form = BrandProposalForm() # An unbound form
+
+        return render(request, self.template_name, {
+                      'form': form})
+
+    def form_valid(self, form):
+        return super(BrandProposalView, self).form_valid(form)
