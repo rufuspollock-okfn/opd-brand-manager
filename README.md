@@ -41,7 +41,7 @@ This is the source code corresponding to [Open Knowledge Foundation Open Product
   
   `echo 'export DJANGO_SETTINGS_MODULE="manager.settings.dev"' >> ~/pyve/pod/bin/postactivate`
 
-- Prepare the test database with the Django dumped data :
+- Prepare the test database with the Django dumped data (in the last command replace #### by the latest migration number) :
 
         # First, we need to create a new role 'pod' with PostgreSQL 
         createuser pod
@@ -52,7 +52,7 @@ This is the source code corresponding to [Open Knowledge Foundation Open Product
         # At this point the database contains the Django default tables
         python manage.py sqlflush |psql -h localhost -U <user> <dbname>
         # At this point the database contains the Django default tables emptyied
-        python manage.py loaddata sql/django_brand_data_2013_11_24_01.json
+        python manage.py loaddata sql/django_brand_data_####.json
         # At this point the database contains the Django testing data
 
 ### 213 - RUN
@@ -82,7 +82,15 @@ If you encounter some problems or your database is corrupted :
 `dropdb pod_brand`
 Then re-prepare the test database (except the role 'pod', which stays there)
 
-### 215 - Contribute
+### 215 - UPDATING DATABASE
+
+When you modify the model, you'll need to update the database :
+`python manage.py schemamigration --auto brand`
+
+If there was no problem, update the dump (replace #### by the migration number) :
+`python manage.py dumpdata > sql/django_brand_data_####.json`
+
+### 216 - Contribute
 
 To contribute to the brand manager, you must :
 

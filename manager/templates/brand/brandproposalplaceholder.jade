@@ -1,0 +1,12 @@
+- extends '__base.jade'
+
+block style
+  link(rel='stylesheet', href='{{ STATIC_URL }}brand/css/brand.css')
+
+block content
+
+  h1 Propose a new brand
+  <form action="/brand/new/" enctype="multipart/form-data" method="post">{% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Submit" />
+  </form>

@@ -1,9 +1,14 @@
 from django.shortcuts import render
 from django.views.generic import View
-from .models import Brand, BrandOwner
+from .models import Brand, BrandOwner, BrandProposal
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
+from .forms import BrandProposalForm
+from django.views.generic.edit import FormView
+from django.contrib.auth.models import User
+from random import choice
+from string import ascii_lowercase, digits
 
 
 class OwnerListView(View):
@@ -93,3 +98,70 @@ class BrandView(View):
         return render(request, self.template_name, {
                       'brand': brand,
                       'owner': brand.owner_cd})
+
+
+def generate_random_username(length=16,
+                             chars=ascii_lowercase + digits,
+                             split=4, delimiter='-'):
+    username = ''.join([choice(chars) for i in xrange(length)])
+    if split:
+        username = delimiter.join(
+            [username[start:start + split]
+                for start in range(0, len(username), split)])
+        try:
+            User.objects.get(username=username)
+            return generate_random_username(
+                length=length, chars=chars,
+                split=split, delimiter=delimiter)
+        except User.DoesNotExist:
+            return username
+
+
+class BrandProposalView(FormView):
+    r"""
+    """
+
+    template_name = 'brand/brandproposalplaceholder.jade'
+    form_class = BrandProposalForm
+    success_url = '/brand/proposed/'
+
+    def get(self, request):
+        form = BrandProposalForm() # An unbound form
+
+        return render(request, self.template_name, {
+                      'form': form})
+
+    def form_valid(self, form):
+        user, created = User.objects.get_or_create(
+            email=form.cleaned_data['sender'],
+            defaults={
+                'username': generate_random_username(),
+                'is_staff': False,
+                'is_active': False,
+                'is_superuser': False})
+        if created:
+            user.save()
+        proposal = BrandProposal(
+            brand_nm=form.cleaned_data['brand_nm'],
+            owner_nm=form.cleaned_data['owner_nm'],
+            brand_link=form.cleaned_data['brand_link'],
+            brand_type_cd=form.cleaned_data['brand_type'],
+            comments=form.cleaned_data['comments'],
+            user=user)
+        proposal.save()
+
+        #save the logo after the proposal is created in the DB
+        #because upload_to requires the primary key to be set
+        proposal.brand_logo = form.cleaned_data['brand_logo']
+        proposal.save()
+        return super(BrandProposalView, self).form_valid(form)
+
+
+class BrandProposedView(View):
+    r"""
+    """
+
+    template_name = 'brand/brandproposed.jade'
+
+    def get(self, request):
+        return render(request, self.template_name)
