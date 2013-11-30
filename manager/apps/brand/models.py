@@ -191,7 +191,7 @@ class BrandProposal(models.Model):
         null=True, verbose_name='Comments')
     status = models.IntegerField(
         db_column='STATUS',
-        validators=[MinValueValidator(4), MaxValueValidator(4)],
+        validators=[MinValueValidator(1), MaxValueValidator(4)],
         default=1, verbose_name='Status')
 
     def brand_logo_admin(self):
