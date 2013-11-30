@@ -13,6 +13,7 @@ from manager.libs.snippets.bsin import BSIN
 from django.core.validators import MaxLengthValidator
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.templatetags.static import static
+from django.contrib.auth.models import User
 import os
 
 
@@ -199,6 +200,9 @@ class BrandProposal(models.Model):
         db_column='STATUS',
         validators=[MinValueValidator(1), MaxValueValidator(4)],
         default=1, verbose_name='Status')
+    user = models.ForeignKey(
+        User, db_column='USER_ID',
+        verbose_name='User')
 
     def brand_logo_admin(self):
         if self.brand_logo:
