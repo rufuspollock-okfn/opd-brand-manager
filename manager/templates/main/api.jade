@@ -1,0 +1,35 @@
+- extends '__base.jade'
+
+block style
+  link(rel='stylesheet', href='{{ STATIC_URL }}brand/css/proposal.css')
+
+block content
+
+  h1 Download
+
+  p Latest dump
+
+  h1 API
+
+  h2 Brand list :
+
+  a(href="{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=json") {% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=json
+
+  h2 Brand detail :
+
+  p {% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='BSIN' %}?format=json
+
+  b Example, for BSIN 6Y61Z7 : 
+  a(href="{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json") {% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json
+
+  h2 Owner list :
+
+  a(href="{% url 'api_dispatch_list' api_name='v1' resource_name='brand_owner' %}?format=json") {% url 'api_dispatch_list' api_name='v1' resource_name='brand_owner' %}?format=json
+
+  h2 Owner detail :
+
+  p {% url 'api_dispatch_detail' api_name='v1' resource_name='brand_owner' pk='OWNER_CD' %}?format=json
+
+  b Example, for owner code 1 : 
+
+  a(href="{% url 'api_dispatch_detail' api_name='v1' resource_name='brand_owner' pk='1' %}?format=json") {% url 'api_dispatch_detail' api_name='v1' resource_name='brand_owner' pk='1' %}?format=json
