@@ -142,7 +142,7 @@ class BrandOwner(models.Model):
     Legal owner of the brand.
     """
 
-    owner_cd = models.IntegerField(db_column='OWNER_CD', primary_key=True)
+    owner_cd = models.AutoField(db_column='OWNER_CD', primary_key=True)
     owner_nm = models.CharField(
         db_column='OWNER_NM', max_length=255, verbose_name='Owner name')
     owner_logo = models.ImageField(
