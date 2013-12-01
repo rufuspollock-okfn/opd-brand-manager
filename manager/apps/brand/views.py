@@ -6,8 +6,10 @@ from django.http import HttpResponseNotFound
 from django.views.generic.edit import FormView
 from django.contrib.auth.models import User
 from manager.libs.snippets.username import generate_random_username
+from manager.libs.snippets.csv_unicode_writer import UnicodeWriter
 from .models import Brand, BrandOwner, BrandProposal
 from .forms import BrandProposalForm
+from django.http import HttpResponse
 
 
 class OwnerListView(View):
@@ -142,3 +144,20 @@ class BrandProposalView(FormView):
         proposal.brand_logo = form.cleaned_data['brand_logo']
         proposal.save()
         return super(BrandProposalView, self).form_valid(form)
+
+
+class BrandDumpView(View):
+    """
+    Brand dump, coma separated, quotes as text separator
+    """
+
+    def get(self, request):
+        # Create the HttpResponse object with the appropriate CSV header.
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = \
+            'attachment; filename="brand_dump.csv"'
+
+        writer = UnicodeWriter(response)
+        writer.writerows(Brand.dumpable_list())
+
+        return response

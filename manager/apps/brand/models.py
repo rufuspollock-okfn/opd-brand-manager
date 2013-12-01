@@ -132,6 +132,20 @@ class Brand(models.Model):
 
         pass
 
+    def dumpable_format(self):
+        return [self.bsin, self.brand_nm,
+                self.owner_cd and unicode(self.owner_cd.owner_nm) or "",
+                self.brand_type_cd and self.brand_type_cd.brand_type_nm or "",
+                self.brand_link,
+                self.brand_logo and self.brand_logo.url or ""]
+
+    @classmethod
+    def dumpable_list(cls):
+        dump = []
+        for brand in cls.objects.filter(flag_delete=False):
+            dump.append(brand.dumpable_format())
+        return dump
+
 
 def get_owner_logo_path(instance, filename):
     return os.path.join('owner', 'logo', '%06d.jpg' % instance.owner_cd)
