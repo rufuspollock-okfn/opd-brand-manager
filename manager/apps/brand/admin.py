@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.db import models
 from .models import Brand, BrandOwner, BrandType, BrandProposal
 from .widget import AdminImageWidget
+from fieldlevel.admin import FieldLevelAdmin
 
 
 class BrandTypeAdmin(admin.ModelAdmin):
@@ -47,7 +48,8 @@ class BrandAdmin(admin.ModelAdmin):
                        'last_modified')
         }),
     )
-    readonly_fields = ('bsin', 'last_modified')
+    readonly_fields_su = ('bsin', 'last_modified')
+    readonly_fields_moderator = ('bsin', 'last_modified', 'brand_nm')
     search_fields = ['bsin', 'brand_nm', 'owner_cd__owner_nm']
     list_filter = ('flag_delete', )
     formfield_overrides = {
@@ -63,6 +65,11 @@ class BrandAdmin(admin.ModelAdmin):
         if obj:
             return self.fields_change
         return self.fields_add
+
+    def get_readonly_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return self.readonly_fields_su
+        return self.readonly_fields_moderator
 
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(BrandProposal)
