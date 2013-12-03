@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.db import models
 from .models import Brand, BrandOwner, BrandType, BrandProposal
 from .widget import AdminImageWidget
-from fieldlevel.admin import FieldLevelAdmin
 
 
 class BrandTypeAdmin(admin.ModelAdmin):
