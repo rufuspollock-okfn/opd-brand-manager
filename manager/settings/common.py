@@ -153,3 +153,11 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
+
+# Logo size (for brand, brandowner, and brandproposal images)
+LOGO_SIZE = (150, 150)
+LOGO_FORMAT = 'jpeg'
+
+# Upload limitation
+TASK_UPLOAD_FILE_TYPES = ['image']
+TASK_UPLOAD_FILE_MAX_SIZE = 102400

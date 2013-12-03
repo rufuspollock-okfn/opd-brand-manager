@@ -14,6 +14,8 @@ from django.core.validators import MaxLengthValidator
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.templatetags.static import static
 from django.contrib.auth.models import User
+from django.conf import settings
+from manager.libs.snippets.square_image import square_image
 import os
 
 
@@ -123,6 +125,7 @@ class Brand(models.Model):
         # Generate a BSIN is the brand hasn't got one (creation)
         if not self.bsin:
             self.bsin = self.get_available_bsin()
+
         super(Brand, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
@@ -273,6 +276,16 @@ class BrandProposal(models.Model):
                 static('brand/images/no_picture.gif'))
 
     brand_logo_admin.allow_tags = True
+
+    def save(self, image_saved=False, *args, **kwargs):
+        super(BrandProposal, self).save(*args, **kwargs)
+
+        if image_saved:
+            if self.brand_logo:
+                filename = get_brand_proposal_logo_path(
+                    self, self.brand_logo.path)
+                square_image(filename, settings.LOGO_SIZE,
+                    settings.LOGO_FORMAT)
 
     class Meta:
         db_table = 'brand_proposal'
