@@ -1,4 +1,3 @@
-
 from PIL import Image
 from django.core.files.storage import default_storage as storage
 
