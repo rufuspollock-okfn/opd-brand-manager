@@ -285,7 +285,7 @@ class BrandProposal(models.Model):
                 filename = get_brand_proposal_logo_path(
                     self, self.brand_logo.path)
                 square_image(filename, settings.LOGO_SIZE,
-                    settings.LOGO_FORMAT)
+                             settings.LOGO_FORMAT)
 
     class Meta:
         db_table = 'brand_proposal'
@@ -293,3 +293,30 @@ class BrandProposal(models.Model):
 
     def __unicode__(self):
         return self.brand_nm
+
+
+class BrandProposalReview(models.Model):
+    """
+    All the brand proposals must be reviewed by the moderators.
+    We save all the reviews
+    """
+
+    proposal_cd = models.ForeignKey(
+        BrandProposal, db_column='PROPOSAL_CD',
+        verbose_name='Proposal')
+    user = models.ForeignKey(
+        User, db_column='USER_ID',
+        verbose_name='User')
+    review_dt = models.DateTimeField(
+        db_column='REVIEW_DT', auto_now_add=True,
+        verbose_name='Insert date')
+    comments = models.TextField(
+        db_column='COMMENTS', validators=[MaxLengthValidator(255)],
+        blank=True, null=True, verbose_name='Comments')
+
+    class Meta:
+        db_table = 'brand_proposal_review'
+        ordering = ['proposal_cd']
+
+    def __unicode__(self):
+        return self.proposal_cd.brand_nm
