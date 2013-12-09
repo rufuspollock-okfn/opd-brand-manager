@@ -102,6 +102,10 @@ To use it, Heroku buildpack url must be configured as follow :
 
     heroku config:add BUILDPACK_URL=git://github.com/Mibou/heroku-buildpack-python.git
 
+To take daily dumps, on Heroku, it is needed to add the scheduler add-on :
+
+    heroku addons:add scheduler
+
 ## 3 - CONTRIBUTE
 
 To contribute to the brand manager, you must :
