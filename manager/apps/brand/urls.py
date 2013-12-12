@@ -14,6 +14,4 @@ urlpatterns = patterns(
 
     url(r'^owner/$', OwnerListView.as_view(), name='ownerlist'),
     url(r'^owner/(?P<cd>[1-9]+)', OwnerView.as_view(), name='owner'),
-
-    url(r'^extract/dump', BrandDumpView.as_view(), name='dump'),
 )
