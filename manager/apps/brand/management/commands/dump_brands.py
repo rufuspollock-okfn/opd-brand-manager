@@ -14,7 +14,6 @@ class Command(BaseCommand):
                 writer = UnicodeWriter(fp)
                 brand_list = Brand.dumpable_list()
                 writer.writerows(brand_list)
-                fp.close()
         except Exception, e:
             raise CommandError('Error while dumping brands: %s' % e.strerror)
 
