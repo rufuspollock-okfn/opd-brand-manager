@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 from django.views.generic import TemplateView
 from manager.apps.brand.views import BrandListView, BrandView
 from manager.apps.brand.views import OwnerListView, OwnerView
-from manager.apps.brand.views import BrandProposalView, BrandDumpView
+from manager.apps.brand.views import BrandProposalView
 
 urlpatterns = patterns(
     '',
