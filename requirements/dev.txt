@@ -2,3 +2,5 @@
 -r common.txt
 ipython==1.1.0
 ipdb==0.8
+pep8==1.4.6
+pyflakes==0.4.5
