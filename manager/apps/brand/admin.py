@@ -18,7 +18,7 @@ class BrandOwnerAdmin(admin.ModelAdmin):
     actions = None
     list_display = ('owner_nm', 'owner_logo_admin', 'owner_link')
     fields = (
-        'owner_nm', 'owner_link', 'owner_wiki_en', 'owner_logo')
+        'owner_nm', 'owner_link', 'owner_logo')
     search_fields = ['owner_nm']
 
     # Never delete a brand, update its BSIN

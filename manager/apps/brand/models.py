@@ -168,9 +168,6 @@ class BrandOwner(models.Model):
     owner_link = models.URLField(
         db_column='OWNER_LINK', max_length=255, null=True, blank=True,
         verbose_name='Owner website')
-    owner_wiki_en = models.URLField(
-        db_column='OWNER_WIKI_EN', max_length=255, null=True, blank=True,
-        verbose_name='Wikipedia English website')
 
     objects = SoftDeletionManager()
 
