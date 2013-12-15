@@ -43,3 +43,6 @@ python-mimeparse==0.1.4
 
 # API
 django-tastypie==0.10.0
+
+# Captcha
+django-recaptcha==0.0.6
