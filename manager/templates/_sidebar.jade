@@ -10,10 +10,11 @@ img(src='{{ STATIC_URL }}main/images/brand_logo_200.png',style='padding:0px;marg
       a(href="{% url 'brandlist' %}")
         span
           | Brand List
-    li
-      a(href="{% url 'ownerlist' %}")
-        span
-          | Owner List
+    //- Postponed in ticket #58
+    //- li
+    //-   a(href="{% url 'ownerlist' %}")
+    //-     span
+    //-       | Owner List
     li
       a(href="{% url 'brandproposal' %}")
         span

@@ -1,13 +1,14 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from tastypie.api import Api
-from manager.apps.brand.api import BrandResource, BrandOwnerResource
+from manager.apps.brand.api import BrandResource  # [#58] , BrandOwnerResource
 
 admin.autodiscover()
 
 v1_api = Api(api_name='v1')
 v1_api.register(BrandResource())
-v1_api.register(BrandOwnerResource())
+# Postponed in ticket #58
+#v1_api.register(BrandOwnerResource())
 
 urlpatterns = patterns(
     '',

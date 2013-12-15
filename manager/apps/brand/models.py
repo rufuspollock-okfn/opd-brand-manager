@@ -54,9 +54,10 @@ class Brand(models.Model):
         verbose_name='BSIN', validators=[BSIN.BSINValidator])
     brand_nm = models.CharField(
         db_column='BRAND_NM', max_length=255, verbose_name='Brand name')
-    owner_cd = models.ForeignKey(
-        'BrandOwner', db_column='OWNER_CD', blank=True, null=True,
-        verbose_name='Owner')
+    # Postponed in ticket #58
+    #owner_cd = models.ForeignKey(
+    #    'BrandOwner', db_column='OWNER_CD', blank=True, null=True,
+    #    verbose_name='Owner')
     brand_type_cd = models.ForeignKey(
         'BrandType', db_column='BRAND_TYPE_CD', verbose_name='Brand type')
     brand_link = models.URLField(
@@ -93,7 +94,8 @@ class Brand(models.Model):
 
     class Meta:
         db_table = 'brand'
-        unique_together = ('brand_nm', 'owner_cd')
+        # Postponed in ticket #58
+        #unique_together = ('brand_nm', 'owner_cd')
         ordering = ['brand_nm']
 
     def __unicode__(self):
@@ -137,7 +139,8 @@ class Brand(models.Model):
 
     def dumpable_format(self):
         return [self.bsin, self.brand_nm,
-                self.owner_cd and unicode(self.owner_cd.owner_nm) or "",
+                # Postponed in ticket #58
+                #self.owner_cd and unicode(self.owner_cd.owner_nm) or "",
                 self.brand_type_cd and self.brand_type_cd.brand_type_nm or "",
                 self.brand_link,
                 self.brand_logo and self.brand_logo.url or ""]
@@ -153,47 +156,47 @@ class Brand(models.Model):
 def get_owner_logo_path(instance, filename):
     return os.path.join('owner', 'logo', '%06d.jpg' % instance.owner_cd)
 
-
-class BrandOwner(models.Model):
-    """
-    Legal owner of the brand.
-    """
-
-    owner_cd = models.AutoField(db_column='OWNER_CD', primary_key=True)
-    owner_nm = models.CharField(
-        db_column='OWNER_NM', max_length=255, verbose_name='Owner name')
-    owner_logo = models.ImageField(
-        db_column='OWNER_LOGO', verbose_name='Owner logo',
-        upload_to=get_owner_logo_path, blank=True, null=True)
-    owner_link = models.URLField(
-        db_column='OWNER_LINK', max_length=255, null=True, blank=True,
-        verbose_name='Owner website')
-
-    objects = SoftDeletionManager()
-
-    class Meta:
-        db_table = 'brand_owner'
-        ordering = ['owner_nm']
-
-    def __unicode__(self):
-        return self.owner_nm
-
-    def owner_logo_admin(self):
-        if self.owner_logo:
-            return '<img width="32" height"32" src="%s"/>' % (
-                self.owner_logo.url)
-        else:
-            return '<img width="32" height"32" src="%s" />' % (
-                static('brand/images/no_picture.gif'))
-
-    owner_logo_admin.allow_tags = True
-
-    def delete(self, *args, **kwargs):
-        """
-        Never delete an owner.
-        """
-
-        pass
+# Postponed in ticket #58
+#class BrandOwner(models.Model):
+#    """
+#    Legal owner of the brand.
+#    """
+#
+#    owner_cd = models.AutoField(db_column='OWNER_CD', primary_key=True)
+#    owner_nm = models.CharField(
+#        db_column='OWNER_NM', max_length=255, verbose_name='Owner name')
+#    owner_logo = models.ImageField(
+#        db_column='OWNER_LOGO', verbose_name='Owner logo',
+#        upload_to=get_owner_logo_path, blank=True, null=True)
+#    owner_link = models.URLField(
+#        db_column='OWNER_LINK', max_length=255, null=True, blank=True,
+#        verbose_name='Owner website')
+#
+#    objects = SoftDeletionManager()
+#
+#    class Meta:
+#        db_table = 'brand_owner'
+#        ordering = ['owner_nm']
+#
+#    def __unicode__(self):
+#        return self.owner_nm
+#
+#    def owner_logo_admin(self):
+#        if self.owner_logo:
+#            return '<img width="32" height"32" src="%s"/>' % (
+#                self.owner_logo.url)
+#        else:
+#            return '<img width="32" height"32" src="%s" />' % (
+#                static('brand/images/no_picture.gif'))
+#
+#    owner_logo_admin.allow_tags = True
+#
+#    def delete(self, *args, **kwargs):
+#        """
+#        Never delete an owner.
+#        """
+#
+#        pass
 
 
 class BrandType(models.Model):
@@ -242,8 +245,9 @@ class BrandProposal(models.Model):
         db_column='BRAND_NM', max_length=255, verbose_name='Brand name')
     brand_type_cd = models.ForeignKey(
         'BrandType', db_column='BRAND_TYPE_CD', verbose_name='Brand type')
-    owner_nm = models.CharField(
-        db_column='OWNER_NM', max_length=255, verbose_name='Owner name')
+    # Postponed in ticket #58
+    #owner_nm = models.CharField(
+    #    db_column='OWNER_NM', max_length=255, verbose_name='Owner name')
     brand_link = models.URLField(
         db_column='BRAND_LINK', max_length=255, blank=True, null=True,
         verbose_name='Brand link')

@@ -3,7 +3,6 @@ from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
-from manager.apps.brand.models import BrandOwner
 from manager.libs.snippets.http_tools import http_destination_exists
 from django.conf import settings
 import urlparse
@@ -12,6 +11,8 @@ import urlparse
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+
+        from manager.apps.brand.models import BrandOwner
 
         # Updating brand url field to append default http protocol
         db.execute("UPDATE BRAND_OWNER SET \"OWNER_LOGO\"=CONCAT(CONCAT('owner/logo/', lpad(\"OWNER_CD\"::text, 6, '0')), '.jpg');")

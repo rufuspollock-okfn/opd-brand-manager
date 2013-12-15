@@ -1,7 +1,8 @@
 from django.conf.urls import patterns, url
 from django.views.generic import TemplateView
 from manager.apps.brand.views import BrandListView, BrandView
-from manager.apps.brand.views import OwnerListView, OwnerView
+# Postponed in ticket #58
+#from manager.apps.brand.views import OwnerListView, OwnerView
 from manager.apps.brand.views import BrandProposalView
 
 urlpatterns = patterns(
@@ -12,6 +13,7 @@ urlpatterns = patterns(
     url(r'^brand/proposed/$', TemplateView.as_view(
         template_name='brand/brandproposed.jade'), name='brandproposed'),
 
-    url(r'^owner/$', OwnerListView.as_view(), name='ownerlist'),
-    url(r'^owner/(?P<cd>[1-9]+)', OwnerView.as_view(), name='owner'),
+    # Postponed in ticket #58
+    #url(r'^owner/$', OwnerListView.as_view(), name='ownerlist'),
+    #url(r'^owner/(?P<cd>[1-9]+)', OwnerView.as_view(), name='owner'),
 )
