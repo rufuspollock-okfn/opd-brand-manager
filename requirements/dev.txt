@@ -1,6 +1,12 @@
 # requirements/dev.txt
 -r common.txt
+
+# Interactive Python
 ipython==1.1.0
+
+# Interactive Python debugger
 ipdb==0.8
+
+# PEP8 and Pyflakes code normalization checkers
 pep8==1.4.6
-pyflakes==0.4.5
+https://github.com/dcramer/pyflakes/tarball/master

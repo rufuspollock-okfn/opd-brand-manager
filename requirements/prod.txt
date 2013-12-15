@@ -1,4 +1,6 @@
 # requirements/prod.txt
 -r common.txt
+
+# AWS S3 files management
 django-storages==1.1.8
 boto==2.17.0
