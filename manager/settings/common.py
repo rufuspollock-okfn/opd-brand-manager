@@ -43,7 +43,8 @@ INSTALLED_APPS = (
     'manager.apps.brand',
     'compressor',
     'south',
-    'tastypie'
+    'tastypie',
+    'captcha'
 )
 
 MIDDLEWARE_CLASSES = (

@@ -2,6 +2,7 @@ from django import forms
 from .models import BrandType
 from django.conf import settings
 from django.template.defaultfilters import filesizeformat
+from captcha.fields import ReCaptchaField
 
 
 class BrandProposalForm(forms.Form):
@@ -17,6 +18,7 @@ class BrandProposalForm(forms.Form):
     comments = forms.CharField(
         max_length=255, label='Comments', required=False)
     sender = forms.EmailField(max_length=255, label='Your mail')
+    captcha = ReCaptchaField()
 
     def clean_brand_logo(self):
         logo = self.cleaned_data['brand_logo']
