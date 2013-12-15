@@ -10,6 +10,7 @@ South==0.8.3
 argparse==1.2.1
 
 # Heroku collection of common Django utilities
+# https://devcenter.heroku.com/articles/getting-started-with-django#requirements-txt
 django-toolbelt==0.0.1
 dj-database-url==0.2.2
 dj-static==0.0.5
