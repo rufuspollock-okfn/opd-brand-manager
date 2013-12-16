@@ -293,7 +293,7 @@ class BrandProposal(models.Model):
 
             if self.status == 3:
                 bsin = self.save_as_brand()
-                self.create_notification(bsin, self.brand_nm)
+                self.create_notification(bsin)
 
         # For a new proposal
         else:
