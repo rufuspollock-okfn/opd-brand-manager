@@ -5,7 +5,7 @@ import string
 
 class BSIN:
 
-    BSINValidator = RegexValidator(r'^[1-9A-NP-Z]*$', 'Only uppercase \
+    BSINValidator = RegexValidator(r'^[1-9A-NP-Z]{6}$', 'Only 6 uppercase \
         alphanumeric characters different from 0 and O are \
         allowed.')
 
