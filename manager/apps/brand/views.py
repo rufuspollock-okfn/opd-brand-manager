@@ -102,7 +102,9 @@ class BrandView(View):
             return HttpResponseNotFound('<h1>Brand not found</h1>')
         return render(request, self.template_name, {
                       'brand': brand,
-                      'owner': brand.owner_cd})
+                      # Postponed in ticket #58
+                      #'owner': brand.owner_cd
+                      })
 
 
 class BrandProposalView(FormView):
