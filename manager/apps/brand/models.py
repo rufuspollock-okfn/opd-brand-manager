@@ -228,7 +228,7 @@ class BrandType(models.Model):
         pass
 
 
-def get_brand_proposal_logo_path(instance, filename):
+def get_brand_proposal_logo_path(instance, filename=None):
     return os.path.join('brandproposal',
                         'logo',
                         '%s.jpg' % instance.proposal_cd)
@@ -309,8 +309,7 @@ class BrandProposal(models.Model):
                 self.save()
 
                 # Resize it
-                filename = get_brand_proposal_logo_path(
-                    self, self.brand_logo.path)
+                filename = get_brand_proposal_logo_path(self)
                 square_image(filename, settings.LOGO_SIZE,
                              settings.LOGO_FORMAT)
 
