@@ -16,6 +16,8 @@ from django.templatetags.static import static
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
 from django.conf import settings
+from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
 from manager.libs.snippets.square_image import square_image
 import os
 
@@ -290,7 +292,8 @@ class BrandProposal(models.Model):
             super(BrandProposal, self).save(*args, **kwargs)
 
             if self.status == 3:
-                self.save_as_brand()
+                bsin = self.save_as_brand()
+                self.create_notification(bsin, self.brand_nm)
 
         # For a new proposal
         else:
@@ -311,6 +314,22 @@ class BrandProposal(models.Model):
                 square_image(filename, settings.LOGO_SIZE,
                              settings.LOGO_FORMAT)
 
+    def create_notification(self, bsin):
+        brand_url = reverse('brand', args=(bsin,))
+        subject = "%s added the OKFN brand repository" % self.brand_nm
+        message = """Dear contributor,
+
+        Your brand %s was added to the OKFN brand respository under BSIN %s.
+        More details at %s .
+
+        Thank you for your contribution.
+
+        Regards,
+        OKFN brand manager team""" % (self.brand_nm, bsin, brand_url)
+
+        send_mail(subject, message, 'noreply@okfn.org',
+                  [self.user.email], fail_silently=True)
+
     def get_reviews(self):
         return BrandProposalReview.objects.filter(proposal_cd=self)
 
@@ -327,10 +346,12 @@ class BrandProposal(models.Model):
         return brand_logo
 
     def save_as_brand(self):
-        Brand(brand_nm=self.brand_nm,
-              brand_type_cd=self.brand_type_cd,
-              brand_link=self.brand_link,
-              brand_logo=self.duplicate_brand_logo()).save()
+        brand = Brand(
+            brand_nm=self.brand_nm,
+            brand_type_cd=self.brand_type_cd,
+            brand_link=self.brand_link,
+            brand_logo=self.duplicate_brand_logo()).save()
+        return brand.bsin
 
     class Meta:
         db_table = 'brand_proposal'
