@@ -25,6 +25,9 @@ class Command(BaseCommand):
             BrandType.objects.get_or_create(
                 brand_type_cd=3, brand_type_nm='Group of brands')
 
+            total_count = 0
+            imported_count = 0
+
             with open(self.csv_path, 'rb') as fp:
                 reader = UnicodeReader(fp, delimiter=',', quotechar='"')
                 media = urlparse.urlparse(settings.MEDIA_URL)
@@ -44,19 +47,25 @@ class Command(BaseCommand):
                         if row[4] != 'NULL':
                             optional_kwargs['brand_link'] = row[4]
 
-                        Brand.objects.get_or_create(
+                        created = Brand.objects.get_or_create(
                             bsin=row[0],
                             brand_nm=row[1],
                             brand_type_cd_id=row[3],
                             flag_delete=False,
                             **optional_kwargs
-                        )
+                        )[1]
+
+                        if created:
+                            imported_count += 1
+                        total_count += 1
+
                     except ValidationError:
                         # Not a BSIN
                         print "Value is not a BSIN ( %s )" % row[0]
                         pass
 
         except Exception, e:
-            raise CommandError('Error while importing brands: %s' % e)
+            raise CommandError('Error while importing brands: %s' % e.strerror)
 
-        self.stdout.write('Successfully imported %d brands.' % len(reader))
+        self.stdout.write('Successfully imported %d brands. (%d total)' % (
+            imported_count, total_count))
