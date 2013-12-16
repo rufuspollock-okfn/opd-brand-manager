@@ -14,6 +14,7 @@ from django.core.validators import MaxLengthValidator
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.templatetags.static import static
 from django.contrib.auth.models import User
+from django.core.files.base import ContentFile
 from django.conf import settings
 from manager.libs.snippets.square_image import square_image
 import os
@@ -79,7 +80,6 @@ class Brand(models.Model):
 
     # Flag delete
     flag_delete.admin_order_field = 'flag_delete'
-    flag_delete.boolean = False
     flag_delete.short_description = 'Brand is deleted?'
 
     # Brand logo
@@ -278,15 +278,59 @@ class BrandProposal(models.Model):
 
     brand_logo_admin.allow_tags = True
 
-    def save(self, image_saved=False, *args, **kwargs):
-        super(BrandProposal, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
 
-        if image_saved:
-            if self.brand_logo:
+        # If proposal is already created
+        if self.proposal_cd:
+            # 1 : Proposed
+            # 2 : First review done
+            # 3 : Validated
+            # 4 : Deleted
+            self.status = min(3, self.get_reviews_count() + 1)
+            super(BrandProposal, self).save(*args, **kwargs)
+
+            if self.status == 3:
+                self.save_as_brand()
+
+        # For a new proposal
+        else:
+            # Pop the logo
+            brand_logo = kwargs.pop('brand_logo', self.brand_logo)
+            self.brand_logo = None
+
+            # Save the proposal
+            super(BrandProposal, self).save(*args, **kwargs)
+            if brand_logo:
+                # Save the logo (with proposal_cd name)
+                self.brand_logo = brand_logo
+                self.save()
+
+                # Resize it
                 filename = get_brand_proposal_logo_path(
                     self, self.brand_logo.path)
                 square_image(filename, settings.LOGO_SIZE,
                              settings.LOGO_FORMAT)
+
+    def get_reviews(self):
+        return BrandProposalReview.objects.filter(proposal_cd=self)
+
+    def get_reviews_count(self):
+        return len(self.get_reviews())
+
+    def duplicate_brand_logo(self):
+        """
+        Duplicating this object including copying the file
+        """
+
+        brand_logo = ContentFile(self.brand_logo.read())
+        brand_logo.name = self.brand_logo.name
+        return brand_logo
+
+    def save_as_brand(self):
+        Brand(brand_nm=self.brand_nm,
+              brand_type_cd=self.brand_type_cd,
+              brand_link=self.brand_link,
+              brand_logo=self.duplicate_brand_logo()).save()
 
     class Meta:
         db_table = 'brand_proposal'
@@ -318,6 +362,7 @@ class BrandProposalReview(models.Model):
     class Meta:
         db_table = 'brand_proposal_review'
         ordering = ['proposal_cd']
+        unique_together = ('proposal_cd', 'user')
 
     def __unicode__(self):
         return self.proposal_cd.brand_nm

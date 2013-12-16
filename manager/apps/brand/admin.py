@@ -1,8 +1,23 @@
 from django.contrib import admin
 from django.db import models
-from .models import Brand, BrandType, BrandProposal, \
-    BrandProposalReview  # [#58] , BrandOwner
+from django.conf.urls import patterns
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+from .models import Brand, BrandType, BrandProposal, BrandProposalReview \
+    # [#58] , BrandOwner
 from .widget import AdminImageWidget
+from .filters import ReviewedFilter
+from .forms import ProposalReviewForm
+
+
+# Monkey patching User __unicode__ function to return email address instead
+# of username.
+def user_unicode(self):
+    return u'%s' % self.email if self.email else self.username
+
+User.__unicode__ = user_unicode
+admin.site.unregister(User)
+admin.site.register(User)
 
 
 class BrandTypeAdmin(admin.ModelAdmin):
@@ -80,5 +95,77 @@ class BrandAdmin(admin.ModelAdmin):
         return self.readonly_fields_moderator
 
 admin.site.register(Brand, BrandAdmin)
-admin.site.register(BrandProposal)
-admin.site.register(BrandProposalReview)
+
+
+class BrandProposalAdmin(admin.ModelAdmin):
+    form = ProposalReviewForm
+    actions = None
+    formfield_overrides = {
+        models.ImageField: {'widget': AdminImageWidget},
+    }
+    readonly_fields_modify = ('brand_nm', 'brand_type_cd', 'brand_link',
+                              'user', 'status', 'comments', 'brand_logo')
+    readonly_fields_create = ('user', 'status', 'comments')
+    list_display = ('brand_nm', 'user')
+    list_filter = (ReviewedFilter, )
+
+    def save_model(self, request, obj, form, change):
+        bpr, created = BrandProposalReview.objects.get_or_create(
+            proposal_cd_id=obj.proposal_cd, user=request.user)
+        bpr.comments = form.data['moderator_comment']
+        bpr.save()
+        obj.save()
+
+    def get_object(self, request, object_id):
+        obj = super(BrandProposalAdmin, self).get_object(request, object_id)
+
+        try:
+            bpr = BrandProposalReview.objects.get(
+                user=request.user, proposal_cd=object_id)
+            obj.moderator_comment = bpr.comments
+        except BrandProposalReview.DoesNotExist:
+            pass
+
+        return obj
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj is not None:
+            if BrandProposalReview.objects.filter(
+                    proposal_cd=obj.proposal_cd,
+                    user=request.user).count() > 0:
+                return self.readonly_fields_modify
+        return self.readonly_fields_create
+
+    def get_urls(self):
+        urls = super(BrandProposalAdmin, self).get_urls()
+        bp_urls = patterns(
+            '', (r'^review/$', self.admin_site.admin_view(self.view)))
+        return bp_urls + urls
+
+    def view(self, request):
+        # custom view which should return an HttpResponse
+        return HttpResponse('Test')
+
+    def get_form(self, request, obj=None, **kwargs):
+        self.exclude = []
+        if not request.user.is_superuser:
+            self.exclude.append('field_to_hide')
+        return super(BrandProposalAdmin, self).get_form(request, obj, **kwargs)
+
+admin.site.register(BrandProposal, BrandProposalAdmin)
+
+
+class BrandProposalReviewAdmin(admin.ModelAdmin):
+    readonly_fields = ('proposal_cd', 'user')
+
+    def has_add_permission(self, request):
+        return False
+
+    def queryset(self, request):
+        qs = super(BrandProposalReviewAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+
+        return qs.filter(user=request.user)
+
+admin.site.register(BrandProposalReview, BrandProposalReviewAdmin)

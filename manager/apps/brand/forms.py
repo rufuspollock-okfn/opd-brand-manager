@@ -5,6 +5,20 @@ from django.template.defaultfilters import filesizeformat
 from captcha.fields import ReCaptchaField
 
 
+class ProposalReviewForm(forms.ModelForm):
+    moderator_comment = forms.CharField(widget=forms.Textarea, max_length=255,
+                                        label='Comments', required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(ProposalReviewForm, self).__init__(*args, **kwargs)
+
+        if 'instance' in kwargs:
+            self.fields['moderator_comment'].initial = \
+                kwargs['instance'].moderator_comment \
+                if hasattr(kwargs['instance'], 'moderator_comment') \
+                else ''
+
+
 class BrandProposalForm(forms.Form):
     brand_nm = forms.CharField(max_length=255, label='Brand name')
     brand_type = forms.ModelChoiceField(queryset=BrandType.objects.all())
