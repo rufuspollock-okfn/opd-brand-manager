@@ -95,8 +95,11 @@ class BrandProposalAdmin(admin.ModelAdmin):
     readonly_fields_modify = ('brand_nm', 'brand_type_cd', 'brand_link',
                               'user', 'status', 'comments', 'brand_logo')
     readonly_fields_create = ('user', 'status', 'comments')
-    list_display = ('brand_nm', 'user')
+    list_display = ('brand_nm', 'user_email')
     list_filter = (ReviewedFilter, )
+
+    def user_email(self, obj):
+        return obj.user.email if obj.user.email else obj.user.username
 
     def save_model(self, request, obj, form, change):
         bpr, created = BrandProposalReview.objects.get_or_create(
@@ -107,7 +110,7 @@ class BrandProposalAdmin(admin.ModelAdmin):
 
     def get_object(self, request, object_id):
         obj = super(BrandProposalAdmin, self).get_object(request, object_id)
-
+        obj.user.__unicode__ = lambda: obj.user.email
         try:
             bpr = BrandProposalReview.objects.get(
                 user=request.user, proposal_cd=object_id)
@@ -146,9 +149,19 @@ admin.site.register(BrandProposal, BrandProposalAdmin)
 
 class BrandProposalReviewAdmin(admin.ModelAdmin):
     readonly_fields = ('proposal_cd', 'user')
+    list_display = ('proposal_cd', 'user')
+
+    def user(self, obj):
+        return obj.user.email if obj.user.email else obj.user.username
 
     def has_add_permission(self, request):
         return False
+
+    def has_change_permission(self, request, obj=None):
+        if obj:
+            return request.user.is_superuser or obj.user == request.user
+        else:
+            return True
 
     def queryset(self, request):
         qs = super(BrandProposalReviewAdmin, self).queryset(request)
