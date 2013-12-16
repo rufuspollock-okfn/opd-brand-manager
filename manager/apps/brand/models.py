@@ -349,7 +349,8 @@ class BrandProposal(models.Model):
             brand_nm=self.brand_nm,
             brand_type_cd=self.brand_type_cd,
             brand_link=self.brand_link,
-            brand_logo=self.duplicate_brand_logo()).save()
+            brand_logo=self.duplicate_brand_logo())
+        brand.save()
         return brand.bsin
 
     class Meta:
