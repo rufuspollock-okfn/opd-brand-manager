@@ -319,10 +319,11 @@ class BrandProposal(models.Model):
                              settings.LOGO_FORMAT)
 
     def delete(self, moderator_comment, *args, **kwargs):
-        self.status = 4
-        super(BrandProposal, self).save(*args, **kwargs)
-        EmailNotification(self.user.id)\
-            .delete_notification(self.brand_nm, moderator_comment)
+        if self.status < 3:
+            self.status = 4
+            super(BrandProposal, self).save(*args, **kwargs)
+            EmailNotification(self.user.id)\
+                .delete_notification(self.brand_nm, moderator_comment)
 
     def get_reviews(self):
         return BrandProposalReview.objects.filter(proposal_cd=self)
