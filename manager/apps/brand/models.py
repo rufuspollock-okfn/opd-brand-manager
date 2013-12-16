@@ -297,7 +297,7 @@ class BrandProposal(models.Model):
 
             if self.status == 3:
                 bsin = self.save_as_brand()
-                EmailNotification(self.user.id)\
+                EmailNotification(self.user.email)\
                     .create_notification(self.brand_nm, bsin)
 
         # For a new proposal
@@ -322,7 +322,7 @@ class BrandProposal(models.Model):
         if self.status < 3:
             self.status = 4
             super(BrandProposal, self).save(*args, **kwargs)
-            EmailNotification(self.user.id)\
+            EmailNotification(self.user.email)\
                 .delete_notification(self.brand_nm, moderator_comment)
 
     def get_reviews(self):
