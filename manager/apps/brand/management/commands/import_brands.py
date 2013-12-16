@@ -22,8 +22,6 @@ class Command(BaseCommand):
                 brand_type_cd=1, brand_type_nm='Manufacturer-brand')
             BrandType.objects.get_or_create(
                 brand_type_cd=2, brand_type_nm='Retailer-brand')
-            BrandType.objects.get_or_create(
-                brand_type_cd=3, brand_type_nm='Group of brands')
 
             total_count = 0
             imported_count = 0
