@@ -2,22 +2,11 @@ from django.contrib import admin
 from django.db import models
 from django.conf.urls import patterns
 from django.http import HttpResponse
-from django.contrib.auth.models import User
 from .models import Brand, BrandType, BrandProposal, BrandProposalReview \
     # [#58] , BrandOwner
 from .widget import AdminImageWidget
 from .filters import ReviewedFilter
 from .forms import ProposalReviewForm
-
-
-# Monkey patching User __unicode__ function to return email address instead
-# of username.
-def user_unicode(self):
-    return u'%s' % self.email if self.email else self.username
-
-User.__unicode__ = user_unicode
-admin.site.unregister(User)
-admin.site.register(User)
 
 
 class BrandTypeAdmin(admin.ModelAdmin):
