@@ -7,6 +7,7 @@ from manager.apps.brand.views import BrandProposalView
 
 urlpatterns = patterns(
     '',
+
     url(r'^brand/$', BrandListView.as_view(), name='brandlist'),
     url(r'^brand/(?P<bsin>[1-9A-NP-Z]{6})', BrandView.as_view(), name='brand'),
     url(r'^brand/new/$', BrandProposalView.as_view(), name='brandproposal'),

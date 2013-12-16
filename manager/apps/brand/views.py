@@ -115,7 +115,9 @@ class BrandProposalView(FormView):
 
     template_name = 'brand/brandproposalplaceholder.jade'
     form_class = BrandProposalForm
-    success_url = reverse('brandproposed')
+
+    def get_success_url(self):
+        return reverse('brandproposed')
 
     def get(self, request):
         form = BrandProposalForm()  # An unbound form
