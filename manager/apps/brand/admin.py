@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from .models import Brand, BrandType, BrandProposal, BrandProposalReview \
     # [#58] , BrandOwner
 from .widget import AdminImageWidget
-from .filters import ReviewedFilter
+from .filters import ReviewedFilter, StatusFilter
 from .forms import ProposalReviewForm
 
 
@@ -96,7 +96,7 @@ class BrandProposalAdmin(admin.ModelAdmin):
                               'user', 'status', 'comments', 'brand_logo')
     readonly_fields_create = ('user', 'status', 'comments')
     list_display = ('brand_nm', 'user_email')
-    list_filter = (ReviewedFilter, )
+    list_filter = (ReviewedFilter, StatusFilter)
 
     def user_email(self, obj):
         return obj.user.email if obj.user.email else obj.user.username
