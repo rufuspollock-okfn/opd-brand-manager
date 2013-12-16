@@ -6,14 +6,15 @@ block style
 block content
 
   h1 {{brand.brand_nm}}
-  if owner
-    if owner.owner_link
-      h2 Owned by 
-        a(href=owner.owner_link) {{ owner.owner_nm }}
-    else
-      h2 Owned by {{ owner.owner_nm }}
-  else
-    h2 No owner
+  //- Postponed in ticket #58
+  //-if owner
+  //-  if owner.owner_link
+  //-    h2 Owned by 
+  //-      a(href=owner.owner_link) {{ owner.owner_nm }}
+  //-  else
+  //-    h2 Owned by {{ owner.owner_nm }}
+  //-else
+  //-  h2 No owner
     
   table
     tbody
