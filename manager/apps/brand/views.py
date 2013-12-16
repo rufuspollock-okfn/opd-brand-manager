@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from manager.libs.snippets.username import generate_random_username
 from .models import Brand, BrandProposal  # [#58] , BrandOwner
 from .forms import BrandProposalForm
+from django.core.urlresolvers import reverse
 
 
 # Postponed in ticket #58
@@ -114,7 +115,7 @@ class BrandProposalView(FormView):
 
     template_name = 'brand/brandproposalplaceholder.jade'
     form_class = BrandProposalForm
-    success_url = '/brand/proposed/'
+    success_url = reverse('brandproposed')
 
     def get(self, request):
         form = BrandProposalForm()  # An unbound form
