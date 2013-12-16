@@ -303,9 +303,6 @@ body {
 
 
 #menu-item-2 {
-	-webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px inset;
-	background-color: rgb(237, 237, 237);
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px inset;
 	color: rgb(51, 51, 51);
 	display: list-item;
 	float: left;
@@ -322,9 +319,6 @@ body {
 }
 
 #menu-item-2  a {
-	-webkit-box-shadow: rgba(0, 0, 0, 0.121569) 0px 3px 8px 0px inset;
-	background-color: rgb(229, 229, 229);
-	box-shadow: rgba(0, 0, 0, 0.121569) 0px 3px 8px 0px inset;
 	color: rgb(93, 93, 93);
 	cursor: auto;
 	display: block;
@@ -386,6 +380,9 @@ body {
 }
 
 #menu-item-4 {
+	-webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px inset;
+	background-color: rgb(237, 237, 237);
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px inset;
 	color: rgb(51, 51, 51);
 	display: list-item;
 	float: left;
@@ -403,6 +400,9 @@ body {
 }
 
 #menu-item-4 a {
+	-webkit-box-shadow: rgba(0, 0, 0, 0.121569) 0px 3px 8px 0px inset;
+	background-color: rgb(229, 229, 229);
+	box-shadow: rgba(0, 0, 0, 0.121569) 0px 3px 8px 0px inset;
 	color: rgb(93, 93, 93);
 	cursor: auto;
 	display: block;
