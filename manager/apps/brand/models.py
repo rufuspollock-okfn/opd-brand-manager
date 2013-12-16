@@ -315,16 +315,16 @@ class BrandProposal(models.Model):
 
     def create_notification(self, bsin):
         brand_url = reverse('brand', args=(bsin,))
-        subject = "%s added the OKFN brand repository" % self.brand_nm
+        subject = "%s added to the OKFN brand repository" % self.brand_nm
         message = """Dear contributor,
 
-        Your brand %s was added to the OKFN brand respository under BSIN %s.
-        More details at %s .
+Your brand %s was added to the OKFN brand respository under BSIN %s.
+More details at http://product.okfn.org%s .
 
-        Thank you for your contribution.
+Thank you for your contribution.
 
-        Regards,
-        OKFN brand manager team""" % (self.brand_nm, bsin, brand_url)
+Regards,
+OKFN brand manager team""" % (self.brand_nm, bsin, brand_url)
 
         send_mail(subject, message, 'noreply@okfn.org',
                   [self.user.email], fail_silently=True)
