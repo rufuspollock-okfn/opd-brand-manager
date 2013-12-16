@@ -288,7 +288,12 @@ class BrandProposal(models.Model):
             # 2 : First review done
             # 3 : Validated
             # 4 : Deleted
-            self.status = min(3, self.get_reviews_count() + 1)
+            if self.status == 4 or self.status == 1:
+                self.status = 2
+
+            if self.status == 2:
+                self.status = 3
+
             super(BrandProposal, self).save(*args, **kwargs)
 
             if self.status == 3:
@@ -313,6 +318,11 @@ class BrandProposal(models.Model):
                 square_image(filename, settings.LOGO_SIZE,
                              settings.LOGO_FORMAT)
 
+    def delete(self, moderator_comment, *args, **kwargs):
+        self.status = 4
+        super(BrandProposal, self).save(*args, **kwargs)
+        self.delete_notification(moderator_comment)
+
     def create_notification(self, bsin):
         brand_url = reverse('brand', args=(bsin,))
         subject = "%s added to the OKFN brand repository" % self.brand_nm
@@ -326,7 +336,23 @@ Thank you for your contribution.
 Regards,
 OKFN brand manager team""" % (self.brand_nm, bsin, brand_url)
 
-        send_mail(subject, message, 'noreply@okfn.org',
+        send_mail(subject, message, 'OKFN team <noreply@okfn.org>',
+                  [self.user.email], fail_silently=True)
+
+    def delete_notification(self, comment):
+        subject = "%s rejected from OKFN brand repository" % self.brand_nm
+        message = """Dear contributor,
+
+Your brand proposal for %s was rejected from the OKFN brand respository.
+
+Moderator comment : %s
+
+Thank you for your contribution.
+
+Regards,
+OKFN brand manager team""" % (self.brand_nm, comment)
+
+        send_mail(subject, message, 'OKFN team <noreply@okfn.org>',
                   [self.user.email], fail_silently=True)
 
     def get_reviews(self):

@@ -106,7 +106,18 @@ class BrandProposalAdmin(admin.ModelAdmin):
             proposal_cd_id=obj.proposal_cd, user=request.user)
         bpr.comments = form.data['moderator_comment']
         bpr.save()
-        obj.save()
+
+        if created:
+            obj.save()
+
+    def delete_model(self, request, obj, form, change):
+        bpr, created = BrandProposalReview.objects.get_or_create(
+            proposal_cd_id=obj.proposal_cd, user=request.user)
+        bpr.comments = form.data['moderator_comment']
+        bpr.save()
+
+        if created:
+            obj.delete(moderator_comment=bpr.comments)
 
     def get_object(self, request, object_id):
         obj = super(BrandProposalAdmin, self).get_object(request, object_id)
