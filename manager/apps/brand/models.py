@@ -375,6 +375,7 @@ class BrandProposalReview(models.Model):
     comments = models.TextField(
         db_column='COMMENTS', validators=[MaxLengthValidator(255)],
         blank=True, null=True, verbose_name='Comments')
+    valid = models.BooleanField(db_column='VALID', verbose_name='Is valid ?')
 
     class Meta:
         db_table = 'brand_proposal_review'
