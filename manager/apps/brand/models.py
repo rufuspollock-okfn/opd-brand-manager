@@ -259,7 +259,7 @@ class BrandProposal(models.Model):
         verbose_name='Insert date')
     comments = models.TextField(
         db_column='COMMENTS', validators=[MaxLengthValidator(255)], blank=True,
-        null=True, verbose_name='Comments')
+        null=True, verbose_name='Proposal comments')
     status = models.NullBooleanField(db_column='STATUS', verbose_name='Status')
     user = models.ForeignKey(
         User, db_column='USER_ID',
