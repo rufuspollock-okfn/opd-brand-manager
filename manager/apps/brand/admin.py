@@ -121,6 +121,17 @@ class BrandProposalAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        if obj:
+            if obj.status:
+                return False
+
+        return super(BrandProposalAdmin, self)\
+            .has_change_permission(request, obj)
+
     def get_object(self, request, object_id):
         obj = super(BrandProposalAdmin, self).get_object(request, object_id)
         obj.user.__unicode__ = lambda: obj.user.email
