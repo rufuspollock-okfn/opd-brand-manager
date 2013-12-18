@@ -352,8 +352,9 @@ class BrandProposal(models.Model):
         reviews = BrandProposalReview.reviews(self.proposal_cd, limit=2)
 
         # If the last review is not valid, the proposal is not valid
-        if not reviews[0].valid:
-            return False
+        if len(reviews) > 0:
+            if not reviews[0].valid:
+                return False
 
         if len(reviews) >= 2:
             # Check the two last reviews
