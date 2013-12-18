@@ -15,14 +15,14 @@ block content
 
   h2 Brand list :
 
-  a(href="{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=json") {% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=json
+  a(href="{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=json")  http://product.okfn.org{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=json
 
   h2 Brand detail :
 
-  p {% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='BSIN' %}?format=json
+  p http://product.okfn.org{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='BSIN' %}?format=json
 
   b Example, for BSIN 6Y61Z7 : 
-  a(href="{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json") {% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json
+  a(href="{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json") http://product.okfn.org{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json
 
 //- Postponed in ticket #58
 //-  h2 Owner list :
