@@ -8,5 +8,6 @@ block content
   h1 Propose a new brand
   form(action='{% url "brandproposal" %}', enctype="multipart/form-data", method="post")
     {% csrf_token %}
-    {{ form.as_p }}
+    table
+        {{ form.as_table }}
     input(type="submit", value="Submit")
