@@ -102,30 +102,34 @@ class BrandProposalAdmin(admin.ModelAdmin):
         return obj.user.email if obj.user.email else obj.user.username
 
     def save_model(self, request, obj, form, change):
-        bpr, created = BrandProposalReview.objects.get_or_create(
-            proposal_cd_id=obj.proposal_cd, user=request.user)
+        valid = True if 'is_valid' in form.data else False
+
+        try:
+            bpr = BrandProposalReview.objects.get(
+                proposal_cd_id=obj.proposal_cd, user=request.user)
+            bpr.valid = valid
+        except BrandProposalReview.DoesNotExist:
+            bpr = BrandProposalReview(proposal_cd_id=obj.proposal_cd,
+                                      user=request.user, valid=valid)
+
         bpr.comments = form.data['moderator_comment']
         bpr.save()
 
-        if created:
-            obj.save()
+        obj.save(bpr) if valid else obj.delete(bpr)
 
-    def delete_model(self, request, obj, form, change):
-        bpr, created = BrandProposalReview.objects.get_or_create(
-            proposal_cd_id=obj.proposal_cd, user=request.user)
-        bpr.comments = form.data['moderator_comment']
-        bpr.save()
-
-        if created:
-            obj.delete(moderator_comment=bpr.comments)
+    # Never delete a brand, update its BSIN
+    def has_delete_permission(self, request, obj=None):
+        return False
 
     def get_object(self, request, object_id):
         obj = super(BrandProposalAdmin, self).get_object(request, object_id)
         obj.user.__unicode__ = lambda: obj.user.email
+
         try:
             bpr = BrandProposalReview.objects.get(
                 user=request.user, proposal_cd=object_id)
             obj.moderator_comment = bpr.comments
+            obj.moderator_validated = bpr.valid
         except BrandProposalReview.DoesNotExist:
             pass
 

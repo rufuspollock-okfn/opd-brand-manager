@@ -145,7 +145,8 @@ class BrandProposalView(FormView):
             user=user,
             #save the logo after the proposal is created in the DB
             #because upload_to requires the primary key to be set
-            brand_logo=form.cleaned_data['brand_logo'])
+            brand_logo=form.cleaned_data['brand_logo'],
+            status=None)
         proposal.save()
 
         return super(BrandProposalView, self).form_valid(form)

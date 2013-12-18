@@ -11,7 +11,6 @@ from __future__ import unicode_literals
 from django.db import models
 from manager.libs.snippets.bsin import BSIN
 from django.core.validators import MaxLengthValidator
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.templatetags.static import static
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
@@ -261,10 +260,7 @@ class BrandProposal(models.Model):
     comments = models.TextField(
         db_column='COMMENTS', validators=[MaxLengthValidator(255)], blank=True,
         null=True, verbose_name='Comments')
-    status = models.IntegerField(
-        db_column='STATUS',
-        validators=[MinValueValidator(1), MaxValueValidator(4)],
-        default=1, verbose_name='Status')
+    status = models.NullBooleanField(db_column='STATUS', verbose_name='Status')
     user = models.ForeignKey(
         User, db_column='USER_ID',
         verbose_name='User')
@@ -279,23 +275,18 @@ class BrandProposal(models.Model):
 
     brand_logo_admin.allow_tags = True
 
-    def save(self, *args, **kwargs):
+    def save(self, proposal_review=None, *args, **kwargs):
 
         # If proposal is already created
         if self.proposal_cd:
-            # 1 : Proposed
-            # 2 : First review done
-            # 3 : Validated
-            # 4 : Deleted
-            if self.status == 4 or self.status == 1:
-                self.status = 2
 
-            if self.status == 2:
-                self.status = 3
+            # True or none depending on the last reviews
+            self.status = self.get_status()
 
             super(BrandProposal, self).save(*args, **kwargs)
 
-            if self.status == 3:
+            # If brand is validated
+            if self.status:
                 bsin = self.save_as_brand()
                 EmailNotification(self.user.email)\
                     .create_notification(self.brand_nm, bsin)
@@ -318,12 +309,20 @@ class BrandProposal(models.Model):
                 square_image(filename, settings.LOGO_SIZE,
                              settings.LOGO_FORMAT)
 
-    def delete(self, moderator_comment, *args, **kwargs):
-        if self.status < 3:
-            self.status = 4
-            super(BrandProposal, self).save(*args, **kwargs)
-            EmailNotification(self.user.email)\
-                .delete_notification(self.brand_nm, moderator_comment)
+    def delete(self, proposal_review=None, *args, **kwargs):
+
+        # Never ever delete validated brand
+        if self.status:
+            pass
+
+        else:
+            if self.status is None:
+                # Send an email to warn user of deletion
+                EmailNotification(self.user.email).delete_notification(
+                    self.brand_nm, proposal_review.comments)
+
+            self.status = False
+            self.save()
 
     def get_reviews(self):
         return BrandProposalReview.objects.filter(proposal_cd=self)
@@ -348,6 +347,22 @@ class BrandProposal(models.Model):
             brand_logo=self.duplicate_brand_logo())
         brand.save()
         return brand.bsin
+
+    def get_status(self):
+        reviews = BrandProposalReview.reviews(self.proposal_cd, limit=2)
+
+        # If the last review is not valid, the proposal is not valid
+        if not reviews[0].valid:
+            return False
+
+        if len(reviews) >= 2:
+            # Check the two last reviews
+            # The two must be valid
+            if reviews[0].valid and reviews[1].valid:
+                return True
+
+        # If its neither valid nor invalid
+        return None
 
     class Meta:
         db_table = 'brand_proposal'
@@ -384,3 +399,10 @@ class BrandProposalReview(models.Model):
 
     def __unicode__(self):
         return self.proposal_cd.brand_nm
+
+    @classmethod
+    def reviews(cls, proposal_cd, limit=None):
+        qs = cls.objects.filter(proposal_cd=proposal_cd).order_by('-review_dt')
+        if limit:
+            return qs[:limit]
+        return qs

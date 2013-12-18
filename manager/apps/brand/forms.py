@@ -7,7 +7,9 @@ from captcha.fields import ReCaptchaField
 
 class ProposalReviewForm(forms.ModelForm):
     moderator_comment = forms.CharField(widget=forms.Textarea, max_length=255,
-                                        label='Comments', required=False)
+                                        label='Your comments', required=False)
+    is_valid = forms.BooleanField(label='Brand is valid', initial=True,
+                                  required=False)
 
     def __init__(self, *args, **kwargs):
         super(ProposalReviewForm, self).__init__(*args, **kwargs)
@@ -17,6 +19,10 @@ class ProposalReviewForm(forms.ModelForm):
                 kwargs['instance'].moderator_comment \
                 if hasattr(kwargs['instance'], 'moderator_comment') \
                 else ''
+
+            if hasattr(kwargs['instance'], 'moderator_validated'):
+                self.fields['is_valid'].initial = \
+                    True if kwargs['instance'].moderator_validated else False
 
 
 class BrandProposalForm(forms.Form):
