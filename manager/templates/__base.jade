@@ -1,9 +1,13 @@
+- load compress
 - spaceless
   !!! 5
   html(lang="en")
     head
-      - include '_header.jade'
-      block style
+      title Brand Manager OKFN
+
+      - compress css
+        link(rel='stylesheet', href='{{ STATIC_URL }}main/css/style.css')
+        block style
 
     body
       - include '_okfn-header.jade'
