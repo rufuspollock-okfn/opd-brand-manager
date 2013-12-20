@@ -15,24 +15,23 @@ block content
 
   h2 Brand list :
 
-  a(href="{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=json")  http://product.okfn.org{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=json
+  a(href="{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=json")  http://{{ site.domain }}{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=json
 
   p You can also get XML data setting the format GET parameter to "xml".
 
-  a(href="{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=xml")  http://product.okfn.org{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=xml
+  a(href="{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=xml")  http://{{ site.domain }}{% url 'api_dispatch_list' api_name='v1' resource_name='brand' %}?format=xml
 
   h2 Brand detail :
 
-  p http://product.okfn.org{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='BSIN' %}?format=json
+  p http://{{ site.domain }}{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='BSIN' %}?format=json
 
   b Example, for BSIN 6Y61Z7 : 
   p
     ul
       li JSON : 
-        a(href="{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json") http://product.okfn.org{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json
+        a(href="{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json") http://{{ site.domain }}{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json
       li XML : 
-        a(href="{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=xml") http://product.okfn.org{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=xml
-    
+        a(href="{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=xml") http://{{ site.domain }}{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=xml
 
 //- Postponed in ticket #58
 //-  h2 Owner list :

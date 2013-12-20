@@ -48,3 +48,9 @@ MEDIA_URL = 'https://s3.amazonaws.com/product.okfn.org/brand/media/'
 RECAPTCHA_PUBLIC_KEY = '6LcA1-sSAAAAAOa3yA3qXPheVoWonfC7Q_FonUHv'
 RECAPTCHA_PRIVATE_KEY = '6LcA1-sSAAAAAGOcGs06xneAXU87b0U0pRTaSzig'
 RECAPTCHA_USE_SSL = True
+
+# Site ID
+# https://docs.djangoproject.com/en/1.6/ref/contrib/sites/#enabling-the-sites-
+# framework
+
+SITE_ID = 2

@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'manager.apps.main',
     'manager.apps.brand',
     'compressor',
@@ -139,6 +140,21 @@ STATICFILES_FINDERS = (
 
     # http://django-compressor.readthedocs.org/en/master/quickstart/
     'compressor.finders.CompressorFinder',
+)
+
+# Template context processors
+# https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processo
+# rs
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    "manager.context_processors.site"
 )
 
 # Password hashers : for more password security

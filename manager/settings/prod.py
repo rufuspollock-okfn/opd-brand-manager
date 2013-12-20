@@ -124,3 +124,9 @@ CSRF_COOKIE_DOMAIN = 'product.okfn.org'
 RECAPTCHA_PUBLIC_KEY = os.environ['RECAPTCHA_PUBLIC_KEY']
 RECAPTCHA_PRIVATE_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
 RECAPTCHA_USE_SSL = True
+
+# Site ID
+# https://docs.djangoproject.com/en/1.6/ref/contrib/sites/#enabling-the-sites-
+# framework
+
+SITE_ID = 1
