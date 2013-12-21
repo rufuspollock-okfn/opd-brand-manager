@@ -11,21 +11,23 @@ import urlparse
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        pass
 
-        from manager.apps.brand.models import BrandOwner
+        # Postponed in ticket #58
+        #from manager.apps.brand.models import BrandOwner
 
-        # Updating brand url field to append default http protocol
-        db.execute("UPDATE BRAND_OWNER SET \"OWNER_LOGO\"=CONCAT(CONCAT('owner/logo/', lpad(\"OWNER_CD\"::text, 6, '0')), '.jpg');")
+        ## Updating brand url field to append default http protocol
+        #db.execute("UPDATE BRAND_OWNER SET \"OWNER_LOGO\"=CONCAT(CONCAT('owner/logo/', lpad(\"OWNER_CD\"::text, 6, '0')), '.jpg');")
 
-        # Adding field 'Brand.brand_logo'
-        media = urlparse.urlparse(settings.MEDIA_URL)
-        for owner in BrandOwner.objects.all():
-            if hasattr(owner.owner_logo, 'url'):
-                if not http_destination_exists(media.netloc,
-                    urlparse.urljoin(media.path, owner.owner_logo.name)):
-                    print "Owner logo could not be found ( %s )" % owner.owner_logo.name
-                    owner.owner_logo = None
-                    owner.save()
+        ## Adding field 'Brand.brand_logo'
+        #media = urlparse.urlparse(settings.MEDIA_URL)
+        #for owner in BrandOwner.objects.all():
+        #    if hasattr(owner.owner_logo, 'url'):
+        #        if not http_destination_exists(media.netloc,
+        #            urlparse.urljoin(media.path, owner.owner_logo.name)):
+        #            print "Owner logo could not be found ( %s )" % owner.owner_logo.name
+        #            owner.owner_logo = None
+        #            owner.save()
 
 
     def backwards(self, orm):
