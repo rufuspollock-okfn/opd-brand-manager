@@ -66,7 +66,13 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS += (
     'storages',
+    'raven.contrib.django.raven_compat',
 )
+
+RAVEN_CONFIG = {
+    'dsn': 'https://e66778a5d97344b3a9a420fdbc3fa09a:'
+           '23fa025d09714bf7b5d3d74706d9656b@app.getsentry.com/17237',
+}
 
 # Static asset configuration for S3
 # https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/#static-root

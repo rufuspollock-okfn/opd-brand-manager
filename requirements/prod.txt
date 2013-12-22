@@ -4,3 +4,7 @@
 # AWS S3 files management
 django-storages==1.1.8
 boto==2.17.0
+
+# Analytics
+newrelic==2.8.0.7
+raven==3.6.1
