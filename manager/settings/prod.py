@@ -69,6 +69,9 @@ INSTALLED_APPS += (
     'raven.contrib.django.raven_compat',
 )
 
+# Sentry configuration
+# http://raven.readthedocs.org/en/latest/config/django.html#setup
+
 RAVEN_CONFIG = {
     'dsn': 'https://e66778a5d97344b3a9a420fdbc3fa09a:'
            '23fa025d09714bf7b5d3d74706d9656b@app.getsentry.com/17237',
