@@ -49,4 +49,4 @@ django-tastypie==0.11.0
 
 # Captcha
 # django-recaptcha==0.0.6 (forked because unmaintained and not PEP8 neither W3C valid)
--e git+http://github.com/Mibou/django-recaptcha.git@b633d47eea9d25edd701c89b157a95ee0e81f565#egg=django_recaptcha-master
+-e git+https://github.com/Mibou/django-recaptcha.git@b633d47eea9d25edd701c89b157a95ee0e81f565#egg=django_recaptcha-master
