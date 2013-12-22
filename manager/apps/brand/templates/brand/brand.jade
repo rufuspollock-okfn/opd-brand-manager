@@ -18,14 +18,15 @@ block content
     
   table
     tbody
-      td.brand-table-td-logo-full
-        if brand.brand_logo
-            img(src=brand.brand_logo.url,height='150',title=brand.brand_nm, alt="{{brand.brand_nm}} logo")
-        else
-            img(src="{{ STATIC_URL }}brand/images/no_picture.gif",height='150',title=brand.brand_nm, alt="{{brand.brand_nm}} logo")
-      td.brand-table-td-infos
-        p <b>BSIN</b>: {{ brand.bsin }}
-        p <b>Type</b>: {{ brand.brand_type_cd.brand_type_nm }}
-        if brand.brand_link
-          p <b>Website</b>: 
-            a(href=brand.brand_link) {{ brand.brand_link }}
+      tr
+        td.brand-table-td-logo-full
+          if brand.brand_logo
+              img(src=brand.brand_logo.url,height='150',title=brand.brand_nm, alt="{{brand.brand_nm}} logo")
+          else
+              img(src="{{ STATIC_URL }}brand/images/no_picture.gif",height='150',title=brand.brand_nm, alt="{{brand.brand_nm}} logo")
+        td.brand-table-td-infos
+          p <b>BSIN</b>: {{ brand.bsin }}
+          p <b>Type</b>: {{ brand.brand_type_cd.brand_type_nm }}
+          if brand.brand_link
+            p <b>Website</b>: 
+              a(href=brand.brand_link) {{ brand.brand_link }}
