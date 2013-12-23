@@ -22,6 +22,8 @@ block content
 
   h2 Brand detail :
 
+  h3 By BSIN :
+
   p http://{{ site.domain }}{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='BSIN' %}?format=json
 
   b Example, for BSIN 6Y61Z7 :
@@ -31,6 +33,20 @@ block content
       a(href="{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json") http://{{ site.domain }}{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=json
     li XML : 
       a(href="{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=xml") http://{{ site.domain }}{% url 'api_dispatch_detail' api_name='v1' resource_name='brand' pk='6Y61Z7' %}?format=xml
+
+  h3 By name :
+
+  p http://{{ site.domain }}{% url 'api_get_search' api_name='v1' resource_name='brand' %}?format=json&q=Brand
+
+  b Example, for brand name "Nest" :
+
+  p We get brands Nestea and Nestlé. (May change as brand repository grows)
+
+  ul
+    li JSON : 
+      a(href="http://{{ site.domain }}{% url 'api_get_search' api_name='v1' resource_name='brand' %}?format=json&q=Nest") http://{{ site.domain }}{% url 'api_get_search' api_name='v1' resource_name='brand' %}?format=json&q=Nest
+    li XML : 
+      a(href="http://{{ site.domain }}{% url 'api_get_search' api_name='v1' resource_name='brand' %}?format=xml&q=Nest") http://{{ site.domain }}{% url 'api_get_search' api_name='v1' resource_name='brand' %}?format=xml&q=Nest
 
 //- Postponed in ticket #58
 //-  h2 Owner list :
