@@ -2,7 +2,7 @@
 
 body {
     font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
@@ -50,7 +50,6 @@ a:active {
     color: rgb(255, 255, 255);
     display: block;
     font-family: OpenSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 65px;
     line-height: 20px;
     margin-bottom: 15px;
@@ -61,7 +60,6 @@ a:active {
     color: rgb(119, 119, 119);
     display: block;
     font-family: OpenSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 65px;
     line-height: 20px;
     margin-bottom: 0px;
@@ -118,7 +116,6 @@ a:active {
     color: rgb(51, 51, 51);
     display: block;
     font-family: OpenSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 66px;
     line-height: 20px;
     margin-right: auto;
@@ -152,8 +149,6 @@ a:active {
 .okfn-top .search-form {
     color: rgb(255, 255, 255);
     display: none;
-    font-family: OpenSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: auto;
     line-height: 20px;
     margin-bottom: 20px;
@@ -168,7 +163,6 @@ a:active {
     cursor: auto;
     display: block;
     float: left;
-    font-family: OpenSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 20px;
     font-weight: 200;
     height: 65px;
@@ -211,7 +205,6 @@ a:active {
     cursor: auto;
     display: block;
     float: left;
-    font-family: OpenSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 20px;
     font-weight: 200;
     height: 35px;
@@ -231,8 +224,6 @@ a:active {
     -webkit-transition-timing-function: ease;
     color: rgb(51, 51, 51);
     display: block;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 0px;
     line-height: 20px;
     overflow-x: visible;
@@ -249,8 +240,6 @@ a:active {
     color: rgb(51, 51, 51);
     display: block;
     float: right;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 66px;
     left: 0px;
     line-height: 20px;
@@ -268,15 +257,12 @@ a:active {
     position: relative;
     width: 477px;
     z-index: 999;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-1 {
     color: rgb(51, 51, 51);
     display: list-item;
     float: left;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 66px;
     line-height: 20px;
     list-style-image: none;
@@ -284,7 +270,6 @@ a:active {
     list-style-type: none;
     text-align: left;
     z-index: auto;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-1 a {
@@ -292,8 +277,6 @@ a:active {
     cursor: auto;
     display: block;
     float: none;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 20px;
     line-height: 20px;
     list-style-image: none;
@@ -306,15 +289,12 @@ a:active {
     text-align: left;
     text-decoration: none solid rgb(93, 93, 93);
     text-shadow: none;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-2 {
     color: rgb(51, 51, 51);
     display: list-item;
     float: left;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 66px;
     line-height: 20px;
     list-style-image: none;
@@ -322,7 +302,6 @@ a:active {
     list-style-type: none;
     text-align: left;
     z-index: auto;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-2  a {
@@ -330,8 +309,6 @@ a:active {
     cursor: auto;
     display: block;
     float: none;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 20px;
     line-height: 20px;
     list-style-image: none;
@@ -344,15 +321,12 @@ a:active {
     text-align: left;
     text-decoration: none solid rgb(93, 93, 93);
     text-shadow: none;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-3 {
     color: rgb(51, 51, 51);
     display: list-item;
     float: left;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 66px;
     line-height: 20px;
     list-style-image: none;
@@ -361,7 +335,6 @@ a:active {
     position: relative;
     text-align: left;
     z-index: 1000;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-3 a {
@@ -369,8 +342,6 @@ a:active {
     cursor: auto;
     display: block;
     float: none;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 20px;
     line-height: 20px;
     list-style-image: none;
@@ -383,7 +354,6 @@ a:active {
     text-align: left;
     text-decoration: none solid rgb(93, 93, 93);
     text-shadow: none;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-4 {
@@ -393,8 +363,6 @@ a:active {
     color: rgb(51, 51, 51);
     display: list-item;
     float: left;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 66px;
     line-height: 20px;
     list-style-image: none;
@@ -403,7 +371,6 @@ a:active {
     position: relative;
     text-align: left;
     z-index: 1000;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-4 a {
@@ -414,8 +381,6 @@ a:active {
     cursor: auto;
     display: block;
     float: none;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 20px;
     line-height: 20px;
     list-style-image: none;
@@ -428,15 +393,12 @@ a:active {
     text-align: left;
     text-decoration: none solid rgb(93, 93, 93);
     text-shadow: none;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-5 {
     color: rgb(51, 51, 51);
     display: list-item;
     float: left;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 66px;
     line-height: 20px;
     list-style-image: none;
@@ -444,7 +406,6 @@ a:active {
     list-style-type: none;
     text-align: left;
     z-index: auto;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-5  a {
@@ -452,8 +413,6 @@ a:active {
     cursor: auto;
     display: block;
     float: none;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 20px;
     line-height: 20px;
     list-style-image: none;
@@ -466,15 +425,12 @@ a:active {
     text-align: left;
     text-decoration: none solid rgb(93, 93, 93);
     text-shadow: none;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-6 {
     color: rgb(51, 51, 51);
     display: list-item;
     float: left;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 66px;
     line-height: 20px;
     list-style-image: none;
@@ -483,7 +439,6 @@ a:active {
     position: relative;
     text-align: left;
     z-index: 1000;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #menu-item-6  a {
@@ -491,8 +446,6 @@ a:active {
     cursor: auto;
     display: block;
     float: none;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 20px;
     line-height: 20px;
     list-style-image: none;
@@ -505,7 +458,6 @@ a:active {
     text-align: left;
     text-decoration: none solid rgb(85, 85, 85);
     text-shadow: none;
-    font-family:OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .okf-footer {
@@ -514,8 +466,6 @@ a:active {
     border-top-width: 1px;
     color: rgb(64, 64, 64);
     display: block;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 12px;
     height: 20px;
     line-height: 20px;
     padding-bottom: 15px;
@@ -528,8 +478,6 @@ a:active {
 .okf-footer.container {
     color: rgb(64, 64, 64);
     display: block;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 12px;
     height: 20px;
     line-height: 20px;
     margin-right: auto;
@@ -558,8 +506,6 @@ a:active {
     border-top-width: 1px;
     color: rgb(64, 64, 64);
     display: block;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
     height: 91px;
     line-height: 20px;
     margin-top: 10px;
@@ -583,8 +529,6 @@ a:active {
     background-size: auto;
     color: rgb(192, 192, 192);
     display: block;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 11px;
     height: 0px;
     line-height: 20px;
     min-height: 0px;
@@ -599,8 +543,6 @@ a:active {
 .okf-footer .container ul {
     color: rgb(64, 64, 64);
     display: block;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 12px;
     height: 20px;
     line-height: 20px;
     list-style-type: disc;
@@ -622,8 +564,6 @@ a:active {
     border-right-width: 1px;
     color: rgb(64, 64, 64);
     display: inline-block;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 12px;
     height: 14px;
     line-height: 14px;
     list-style-type: disc;
@@ -644,8 +584,6 @@ a:active {
     color: rgb(64, 64, 64);
     cursor: auto;
     display: inline;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 12px;
     height: auto;
     line-height: 14px;
     list-style-type: disc;
@@ -741,8 +679,6 @@ a:active {
 
 #cssmenu span, #cssmenu a {
     display: inline-block;
-    font-family: OpenSans, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 12px;
     text-decoration: none;
 }
 
