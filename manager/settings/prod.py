@@ -187,3 +187,15 @@ LOGGING = {
         },
     },
 }
+
+# Haystack connection configuration
+# http://django-haystack.readthedocs.org/en/latest/tutorial.html#elasticsearch
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE':
+        'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': os.environ['BONSAI_URL'],
+        'INDEX_NAME': 'haystack',
+    },
+}

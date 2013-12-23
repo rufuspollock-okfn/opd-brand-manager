@@ -1,0 +1,3 @@
+{{ object.bsin }}
+{{ object.brand_nm }}
+{{ object.brand_link }}

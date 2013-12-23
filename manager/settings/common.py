@@ -45,7 +45,8 @@ INSTALLED_APPS = (
     'compressor',
     'south',
     'tastypie',
-    'captcha'
+    'captcha',
+    'haystack'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -66,11 +67,17 @@ WSGI_APPLICATION = 'manager.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
+# Default timezone
+# https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_L10N = True
+
+# Use timezones
+# https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 
 USE_TZ = True
 
@@ -178,3 +185,8 @@ LOGO_FORMAT = 'jpeg'
 # Upload limitation
 TASK_UPLOAD_FILE_TYPES = ['image']
 TASK_UPLOAD_FILE_MAX_SIZE = 102400
+
+# Django haystack
+# https://django-haystack.readthedocs.org/en/latest/signal_processors.html#real
+# time-realtimesignalprocessor
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

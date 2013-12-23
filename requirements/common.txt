@@ -44,9 +44,16 @@ Pillow==2.2.1
 # File mimetype (used for checking image files)
 python-mimeparse==0.1.4
 
-# API
-django-tastypie==0.11.0
 
 # Captcha
 # django-recaptcha==0.0.6 (forked because unmaintained and not PEP8 neither W3C valid)
 -e git+https://github.com/Mibou/django-recaptcha.git@b633d47eea9d25edd701c89b157a95ee0e81f565#egg=django_recaptcha
+
+# Timezone
+pytz==2013.8
+
+# Tastypie API
+django-tastypie==0.11.0
+django-haystack==2.1.0
+pyelasticsearch==0.6.1
+requests==2.1.0

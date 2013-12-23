@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 from django.views.generic import TemplateView
 from manager.apps.brand.views import BrandListView, BrandView
 # Postponed in ticket #58
@@ -13,6 +13,9 @@ urlpatterns = patterns(
     url(r'^brand/new/$', BrandProposalView.as_view(), name='brandproposal'),
     url(r'^brand/proposed/$', TemplateView.as_view(
         template_name='brand/brandproposed.jade'), name='brandproposed'),
+
+    # Brand search with Haystack
+    url(r'^search/', include('haystack.urls')),
 
     # Postponed in ticket #58
     #url(r'^owner/$', OwnerListView.as_view(), name='ownerlist'),
