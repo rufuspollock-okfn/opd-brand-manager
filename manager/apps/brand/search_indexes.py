@@ -8,8 +8,7 @@ class BrandIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     bsin = indexes.CharField(model_attr='bsin')
     brand_nm = indexes.CharField(model_attr='brand_nm')
-    brand_link = indexes.CharField(model_attr='brand_link',
-                                        default='')
+    brand_link = indexes.CharField(model_attr='brand_link', default='')
     last_modified = indexes.DateTimeField(model_attr='last_modified')
 
     def get_model(self):
