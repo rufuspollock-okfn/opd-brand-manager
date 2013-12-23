@@ -17,18 +17,20 @@ This is the source code corresponding to [Open Knowledge Foundation Open Product
 * [VirtualEnv 1.9+] [4]
 * [PostgreSQL 9.1.9] [5]
 * [libffi 3.0.13+] [6]
+* [ElasticSearch 0.90.8+] [7]
 
 [2]: <http://www.python.org/getit/> "Python install documentation"
 [3]: <http://www.pip-installer.org/en/latest/installing.html> "Pip install documentation"
 [4]: <https://pypi.python.org/pypi/virtualenv> "VirtualEnv install documentation"
 [5]: <http://www.postgresql.org/download/> "PostgreSQL download Page"
 [6]: <https://sourceware.org/libffi/> "libffi download page"
+[7]: <http://www.elasticsearch.org/download/> "ElasticSearch download page"
 
 **Optionnal :**
 
-* [VirtualEnvWrapper 3.7+] [7]
+* [VirtualEnvWrapper 3.7+] [8]
 
-[7]: <http://virtualenvwrapper.readthedocs.org/en/latest/install.html#basic-installation> "VirtualEnvWrapper install documentation"
+[8]: <http://virtualenvwrapper.readthedocs.org/en/latest/install.html#basic-installation> "VirtualEnvWrapper install documentation"
 
 ### 212 - CONFIGURATION
 
@@ -71,9 +73,9 @@ This command should return something like :
     11:41:19 web.1  | 2013-11-18 11:41:19 [1842] [INFO] Using worker: sync
     11:41:19 web.1  | 2013-11-18 11:41:19 [1847] [INFO] Booting worker with pid: 1847
 
-You can then navigate to the [hereabove mentionned] [8] address in your browser and will see the web application displayed.
+You can then navigate to the [hereabove mentionned] [9] address in your browser and will see the web application displayed.
 
-[8]: <http://127.0.0.1:5000> "Localhost Python Django server"
+[9]: <http://127.0.0.1:5000> "Localhost Python Django server"
 
 ### 214 - MIGRATE
 
@@ -94,9 +96,9 @@ If there was no problem, update the dump (replace #### by the migration number) 
 
 ## 21 - PRODUCTION ENVIRONMENT
 
-Heroku needs a custom buildpack to integrate [libffi] [6]. This one was created to fit brand-manager needs : [Mibou/heroku-buildpack-python] [9]
+Heroku needs a custom buildpack to integrate [libffi] [6]. This one was created to fit brand-manager needs : [Mibou/heroku-buildpack-python] [10]
 
-[9]: <https://github.com/Mibou/heroku-buildpack-python> "brand-manager Heroku buildpack"
+[10]: <https://github.com/Mibou/heroku-buildpack-python> "brand-manager Heroku buildpack"
 
 To use it, Heroku buildpack url must be configured as follow :
 
@@ -110,15 +112,15 @@ To take daily dumps, on Heroku, it is needed to add the scheduler add-on :
 
 To contribute to the brand manager, you must :
 
-1. Download and read the specifications from the [docs folder] [10] at the repository's root.
-- Leave a message on the "[Who wants to contribute] [11]" issue #9 ticket.
+1. Download and read the specifications from the [docs folder] [11] at the repository's root.
+- Leave a message on the "[Who wants to contribute] [12]" issue #9 ticket.
 - Wait to be assigned an issue or take an unasigned issue dropping a comment on it.
-- Fork the repository, do your modifications, push them and create a pull request on GitHub. More information about how to contribute in [GitHub documentation] [12].
+- Fork the repository, do your modifications, push them and create a pull request on GitHub. More information about how to contribute in [GitHub documentation] [13].
 
-As much as possible, your changes must validate [PEP8] [13] coding standards. You can also check your contributions using [Pylint] [14].
+As much as possible, your changes must validate [PEP8] [14] coding standards. You can also check your contributions using [Pylint] [15].
 
-[10]: <https://github.com/okfn/brand-manager/tree/master/docs> "Documentation folder"
-[11]: <https://github.com/okfn/brand-manager/issues/9> "Who wants to contribute"
-[12]: <https://help.github.com/articles/fork-a-repo> "GitHub documentation to contribute to a project"
-[13]: <http://www.python.org/dev/peps/pep-0008/> "PEP8 coding convention"
-[14]: <http://www.pylint.org/> "Pylint"
+[11]: <https://github.com/okfn/brand-manager/tree/master/docs> "Documentation folder"
+[12]: <https://github.com/okfn/brand-manager/issues/9> "Who wants to contribute"
+[13]: <https://help.github.com/articles/fork-a-repo> "GitHub documentation to contribute to a project"
+[14]: <http://www.python.org/dev/peps/pep-0008/> "PEP8 coding convention"
+[15]: <http://www.pylint.org/> "Pylint"
